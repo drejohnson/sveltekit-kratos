@@ -40,7 +40,6 @@ export const getTitle = (n: UiNode): string => {
 		case 'input':
 			const key = (n.attributes as UiNodeInputAttributes).name;
 			if (n.meta?.label?.text) {
-				// console.log('from getTitle', n.meta.label.text);
 				return n.meta.label.text;
 			} else if (key in ui) {
 				return ui[key as keyof Translations].title;
@@ -53,46 +52,6 @@ export const getTitle = (n: UiNode): string => {
 	return '';
 };
 
-export const getType = (n: UiNode): string => {
-	switch (n.type) {
-		case 'a':
-			return (n.attributes as UiNodeAnchorAttributes).title.text;
-		case 'img':
-			return n.meta.label?.text || '';
-		case 'input':
-			const key = (n.attributes as UiNodeInputAttributes).type;
-			if (n.meta?.label?.text) {
-				// console.log('from getAttribute', n.meta.label.text);
-				return n.meta.label.text;
-			} else if (key in ui) {
-				return ui[key as keyof Translations].title;
-			}
-			return key;
-	}
-
-	return '';
-};
-
 export const getAttribute = (node: UiNode) => node.attributes as UiNodeInputAttributes;
 
-// This helper function translates the html input type to the corresponding partial name.
-export const uiNodeInputType = (node: UiNode) => {
-	switch (node.type) {
-		case 'input': {
-			const attributes = node.attributes as UiNodeInputAttributes;
-			switch (attributes.type) {
-				case 'hidden':
-					return 'hidden';
-				case 'password':
-					return 'password';
-				case 'submit':
-					return 'button';
-				case 'checkbox':
-					return 'checkbox';
-				default:
-					return 'default';
-			}
-		}
-	}
-	return 'default';
-};
+export const isString = (x: any): x is string => typeof x === 'string';
