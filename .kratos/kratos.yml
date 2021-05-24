@@ -1,0 +1,135 @@
+# see full reference in https://www.ory.sh/kratos/docs/reference/configuration/
+version: v0.6.3-alpha.1
+
+# dsn: memory
+
+serve:
+  public:
+    base_url: http://127.0.0.1:4433/
+    cors:
+      allowed_origins:
+        - http://127.0.0.1:3000
+      allowed_methods:
+        - POST
+        - GET
+        - PUT
+        - PATCH
+        - DELETE
+      allowed_headers:
+        - Authorization
+        - Cookie
+      exposed_headers:
+        - Content-Type
+        - Set-Cookie
+      enabled: true
+      debug: true
+  admin:
+    base_url: http://kratos:4434/
+
+selfservice:
+  default_browser_return_url: http://127.0.0.1:3000/
+  whitelisted_return_urls:
+    - http://127.0.0.1:3000
+
+  methods:
+    password:
+      enabled: true
+    # oidc:
+    #   enabled: true
+    #   config:
+    #     providers:
+    #       - id: google
+    #         provider: google
+    #         client_id: INSERT GOOGLE ID HERE
+    #         client_secret: INSERT GOOGLE SECRET HERE
+    #         mapper_url: file:///etc/config/kratos/oidc.google.jsonnet
+    #         scope:
+    #           - profile
+    #           - email
+    #           - openid
+    #         requested_claims:
+    #           id_token:
+    #             email:
+    #               essential: true
+    #             email_verified:
+    #               essential: true
+    #             given_name:
+    #               essential: true
+    #             family_name: null
+    #       - id: facebook
+    #         provider: facebook
+    #         client_id: INSERT FACEBOOK ID HERE
+    #         client_secret: .INSERT FACEBOOK SECRET HERE
+    #         mapper_url: file:///etc/config/kratos/oidc.facebook.jsonnet
+    #         scope:
+    #           - email
+
+  flows:
+    error:
+      ui_url: http://127.0.0.1:3000/error
+
+    settings:
+      ui_url: http://127.0.0.1:3000/settings
+      privileged_session_max_age: 15m
+
+    recovery:
+      enabled: true
+      ui_url: http://127.0.0.1:3000/recovery
+
+    verification:
+      enabled: true
+      ui_url: http://127.0.0.1:3000/verify
+      after:
+        default_browser_return_url: http://127.0.0.1:3000/
+
+    logout:
+      after:
+        default_browser_return_url: http://127.0.0.1:3000/auth/login
+
+    login:
+      ui_url: http://127.0.0.1:3000/auth/login
+      lifespan: 10m
+
+    registration:
+      lifespan: 10m
+      ui_url: http://127.0.0.1:3000/auth/registration
+      after:
+        password:
+          hooks:
+            - hook: session
+        # oidc:
+        #   hooks:
+        #     - hook: session
+
+log:
+  # Don't use these settings in prod
+  level: debug
+  format: text
+  leak_sensitive_values: true
+
+# set in SECRETS_COOKIE and SECRETS_DEFAULT env variables
+secrets:
+  default:
+    - PLEASE-CHANGE-DEFAULT-SECRET-I-AM-VERY-INSECURE
+  cookie:
+    - PLEASE-CHANGE-COOKIE-SECRET-I-AM-VERY-INSECURE
+
+# session:
+#   lifespan: 720h
+#   cookie:
+#     domain: example.com
+
+hashers:
+  argon2:
+    parallelism: 1
+    memory: 128MB
+    iterations: 2
+    salt_length: 16
+    key_length: 16
+
+identity:
+  default_schema_url: file:///etc/config/kratos/identity.schema.json
+
+courier:
+  smtp:
+    connection_uri: smtps://test:test@mailslurper:1025/?skip_ssl_verify=true
