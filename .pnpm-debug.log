@@ -1,0 +1,152 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "~TODO~",
+      "version": "0.0.1",
+      "scripts": {
+        "dev": "svelte-kit dev",
+        "build": "svelte-kit build",
+        "preview": "svelte-kit preview",
+        "lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+        "format": "prettier --write --plugin-search-dir=. ."
+      },
+      "devDependencies": {
+        "@sveltejs/kit": "next",
+        "@typescript-eslint/eslint-plugin": "^4.19.0",
+        "@typescript-eslint/parser": "^4.19.0",
+        "eslint": "^7.22.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-svelte3": "^3.2.0",
+        "prettier": "~2.2.1",
+        "prettier-plugin-svelte": "^2.2.0",
+        "svelte": "^3.34.0",
+        "svelte-preprocess": "^4.0.0",
+        "tslib": "^2.0.0",
+        "typescript": "^4.0.0"
+      },
+      "type": "module"
+    },
+    "prefix": "/home/dre/workspace/svelte/sveltekit-kratos"
+  },
+  "2 debug pnpm:context": {
+    "currentLockfileExists": false,
+    "storeDir": "/home/dre/.pnpm-store/v3",
+    "virtualStoreDir": "/home/dre/workspace/svelte/sveltekit-kratos/node_modules/.pnpm"
+  },
+  "3 debug pnpm:stage": {
+    "prefix": "/home/dre/workspace/svelte/sveltekit-kratos",
+    "stage": "resolution_started"
+  },
+  "4 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/tslib/2.2.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "tslib",
+      "rawSpec": "^2.0.0"
+    }
+  },
+  "5 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tslib/2.2.0",
+    "requester": "/home/dre/workspace/svelte/sveltekit-kratos",
+    "status": "resolved"
+  },
+  "6 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tslib/2.2.0",
+    "requester": "/home/dre/workspace/svelte/sveltekit-kratos",
+    "status": "found_in_store"
+  },
+  "7 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/prettier-plugin-svelte/2.3.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "prettier-plugin-svelte",
+      "rawSpec": "^2.2.0"
+    }
+  },
+  "8 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prettier-plugin-svelte/2.3.0",
+    "requester": "/home/dre/workspace/svelte/sveltekit-kratos",
+    "status": "resolved"
+  },
+  "9 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prettier-plugin-svelte/2.3.0",
+    "requester": "/home/dre/workspace/svelte/sveltekit-kratos",
+    "status": "found_in_store"
+  },
+  "10 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-svelte3/3.2.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "eslint-plugin-svelte3",
+      "rawSpec": "^3.2.0"
+    }
+  },
+  "11 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-svelte3/3.2.0",
+    "requester": "/home/dre/workspace/svelte/sveltekit-kratos",
+    "status": "resolved"
+  },
+  "12 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-config-prettier/8.3.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "eslint-config-prettier",
+      "rawSpec": "^8.1.0"
+    }
+  },
+  "13 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-config-prettier/8.3.0",
+    "requester": "/home/dre/workspace/svelte/sveltekit-kratos",
+    "status": "resolved"
+  },
+  "14 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/prettier/2.2.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "prettier",
+      "rawSpec": "~2.2.1"
+    }
+  },
+  "15 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prettier/2.2.1",
+    "requester": "/home/dre/workspace/svelte/sveltekit-kratos",
+    "status": "resolved"
+  },
+  "16 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prettier/2.2.1",
+    "requester": "/home/dre/workspace/svelte/sveltekit-kratos",
+    "status": "found_in_store"
+  },
+  "17 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@sveltejs/kit/1.0.0-next.109",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@sveltejs/kit",
+      "rawSpec": "next"
+    }
+  },
+  "18 warn pnpm:install-check": {
+    "message": "Unsupported engine for registry.npmjs.org/@sveltejs/kit/1.0.0-next.109: wanted: {\"node\":\"^12.20 || ^14.13.1 || >= 16\"} (current: {\"node\":\"v14.10.0\",\"pnpm\":\"6.4.0\"})",
+    "prefix": "/home/dre/workspace/svelte/sveltekit-kratos"
+  },
+  "19 error pnpm": {
+    "code": "ERR_PNPM_UNSUPPORTED_ENGINE",
+    "packageId": "registry.npmjs.org/@sveltejs/kit/1.0.0-next.109",
+    "wanted": {
+      "node": "^12.20 || ^14.13.1 || >= 16"
+    },
+    "current": {
+      "node": "v14.10.0",
+      "pnpm": "6.4.0"
+    },
+    "err": {
+      "name": "Error",
+      "message": "Unsupported engine for registry.npmjs.org/@sveltejs/kit/1.0.0-next.109: wanted: {\"node\":\"^12.20 || ^14.13.1 || >= 16\"} (current: {\"node\":\"v14.10.0\",\"pnpm\":\"6.4.0\"})",
+      "code": "ERR_PNPM_UNSUPPORTED_ENGINE",
+      "stack": "Error: Unsupported engine for registry.npmjs.org/@sveltejs/kit/1.0.0-next.109: wanted: {\"node\":\"^12.20 || ^14.13.1 || >= 16\"} (current: {\"node\":\"v14.10.0\",\"pnpm\":\"6.4.0\"})\n    at Object.checkEngine [as default] (/home/dre/.npm-packages/pnpm-global/5/node_modules/.pnpm/pnpm@6.4.0/node_modules/pnpm/dist/pnpm.cjs:40162:16)\n    at checkPackage (/home/dre/.npm-packages/pnpm-global/5/node_modules/.pnpm/pnpm@6.4.0/node_modules/pnpm/dist/pnpm.cjs:40306:99)\n    at Object.packageIsInstallable [as default] (/home/dre/.npm-packages/pnpm-global/5/node_modules/.pnpm/pnpm@6.4.0/node_modules/pnpm/dist/pnpm.cjs:40276:20)\n    at resolveDependency (/home/dre/.npm-packages/pnpm-global/5/node_modules/.pnpm/pnpm@6.4.0/node_modules/pnpm/dist/pnpm.cjs:109898:81)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async resolveDependenciesOfDependency (/home/dre/.npm-packages/pnpm-global/5/node_modules/.pnpm/pnpm@6.4.0/node_modules/pnpm/dist/pnpm.cjs:109622:39)\n    at async Promise.all (index 0)\n    at async Object.resolveDependencies [as default] (/home/dre/.npm-packages/pnpm-global/5/node_modules/.pnpm/pnpm@6.4.0/node_modules/pnpm/dist/pnpm.cjs:109592:29)\n    at async /home/dre/.npm-packages/pnpm-global/5/node_modules/.pnpm/pnpm@6.4.0/node_modules/pnpm/dist/pnpm.cjs:110137:47\n    at async Promise.all (index 0)"
+    }
+  }
+}
