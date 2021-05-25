@@ -110,9 +110,9 @@ log:
 # set in SECRETS_COOKIE and SECRETS_DEFAULT env variables
 secrets:
   default:
-    - PLEASE-CHANGE-DEFAULT-SECRET-I-AM-VERY-INSECURE
+    - 54a955135cc1568c3b630436fab8c42d0ef397fda9ac90d07051187e2a574e72
   cookie:
-    - PLEASE-CHANGE-COOKIE-SECRET-I-AM-VERY-INSECURE
+    - a17d7608c7839f632d5f0a11dcc88b46fdc090defa454ee65e8090bd4dc54c6a
 
 # session:
 #   lifespan: 720h
