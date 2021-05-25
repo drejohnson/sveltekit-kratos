@@ -55,3 +55,12 @@ export const getTitle = (n: UiNode): string => {
 export const getAttribute = (node: UiNode) => node.attributes as UiNodeInputAttributes;
 
 export const isString = (x: any): x is string => typeof x === 'string';
+
+export const redirectOnError = (error: any, path: string) => {
+	if ([401, 403, 404].includes(error.response.status)) {
+		return {
+			status: 302,
+			redirect: `${config.kratos.public}${path}`
+		};
+	}
+};
