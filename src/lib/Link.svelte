@@ -1,11 +1,15 @@
 <script lang="ts">
 	export let href: string;
 	export let activeClass: string = '';
-
+	export let textColor: string = '';
+	export let textHover: string = '';
+	export let styles: string = '';
 </script>
 
 <a
-	class="ml-5 font-medium leading-6 text-black hover:text-red {activeClass}"
+	class="{textColor ? textColor : 'text-black'} {textHover
+		? textHover
+		: ''} hover:underline {styles} {activeClass}"
 	{href}
 	{...$$restProps}
 >
