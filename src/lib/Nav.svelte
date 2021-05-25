@@ -2,7 +2,6 @@
 	import Link from './Link.svelte';
 
 	export let path: string;
-
 </script>
 
 <header class="absolute w-full px-8 z-50">
@@ -20,13 +19,20 @@
 			<nav
 				class="navigation flex flex-wrap items-center mb-5 text-base md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200"
 			>
+				<Link href="/auth/login" activeClass={path === 'auth/login' ? 'underline' : ''}>Login</Link>
 				<Link
+					styles="ml-5 font-medium leading-6"
 					href="/auth/registration"
 					activeClass={path === 'auth/registration' ? 'underline' : ''}
 				>
 					Register
 				</Link>
-				<Link rel="prefetch" href="/about" activeClass={path === 'about' ? 'underline' : ''}>
+				<Link
+					styles="ml-5 font-medium leading-6"
+					rel="prefetch"
+					href="/about"
+					activeClass={path === 'about' ? 'underline' : ''}
+				>
 					About
 				</Link>
 			</nav>

@@ -1,25 +1,13 @@
 import type { UiNode, UiNodeInputAttributes } from '@ory/kratos-client';
 import type { UiNodeAnchorAttributes, UiNodeTextAttributes } from '@ory/kratos-client/api';
+import config from '$lib/config';
 
 const ui: { [key: string]: { title: string; position: number } } = {
 	// You could add custom translations here if you want to:
 	//
-	'traits.email': {
-		title: 'E-Mail',
-		position: 1
-	},
-	'traits.name.first': {
-		title: 'First Name',
-		position: 2
-	},
-	'traits.name.last': {
-		title: 'Last Name',
-		position: 3
-	},
-	password: {
-		title: 'Password',
-		position: 4
-	}
+	// 'traits.email': {
+	// 	title: 'E-Mail',
+	// }
 };
 
 type Translations = typeof ui;

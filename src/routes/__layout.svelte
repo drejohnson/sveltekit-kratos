@@ -7,7 +7,6 @@
 	export let path: string;
 
 	$: path = $page.path.slice(1);
-
 </script>
 
 <TailwindCSS />
