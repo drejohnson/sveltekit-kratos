@@ -52,3 +52,5 @@ export const redirectOnError = (error: any, path: string) => {
 		};
 	}
 };
+
+export const logoutUrl = `${config.kratos.public}/self-service/browser/flows/logout`;
