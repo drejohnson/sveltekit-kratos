@@ -1,8 +1,5 @@
 import type { Handle, GetSession } from '@sveltejs/kit';
-import { Configuration, PublicApi } from '@ory/kratos-client';
 import config from '$lib/config';
-
-const kratos = new PublicApi(new Configuration({ basePath: config.kratos.public }));
 
 export const handle: Handle = async ({ request, render }) => {
 	const res = await fetch(`${config.kratos.public}/sessions/whoami`, {
@@ -13,7 +10,6 @@ export const handle: Handle = async ({ request, render }) => {
 	});
 
 	const session = await res.json();
-	// console.log('session', session);
 	if (session !== undefined) request.locals.user = session;
 
 	const response = await render(request);
