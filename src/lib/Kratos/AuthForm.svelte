@@ -4,7 +4,7 @@
 </script>
 
 <form
-	class="flex flex-col bg-white rounded shadow-lg p-12 mt-12"
+	class="flex flex-col pt-3 md:pt-8"
 	action={formConfig.action}
 	method={formConfig.method}
 	enctype="application/x-www-form-urlencoded"
