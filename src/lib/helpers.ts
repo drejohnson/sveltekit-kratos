@@ -45,7 +45,11 @@ export const getAttribute = (node: UiNode) => node.attributes as UiNodeInputAttr
 export const isString = (x: any): x is string => typeof x === 'string';
 
 export const redirectOnError = (error: any, path: string) => {
-	if ([401, 403, 404].includes(error.response.status)) {
+	if (
+		error.response.status === 404 ||
+		error.response.status === 410 ||
+		error.response.status === 403
+	) {
 		return {
 			status: 302,
 			redirect: `${config.kratos.public}${path}`
