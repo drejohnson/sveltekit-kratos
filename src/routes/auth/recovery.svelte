@@ -1,41 +1,7 @@
 <script lang="ts" context="module">
-	import { Configuration, PublicApi } from '@ory/kratos-client';
-	import config from '$lib/config';
-	import { isString, redirectOnError } from '$lib/helpers';
+	import { createLoad } from './_load';
 
-	const kratos = new PublicApi(new Configuration({ basePath: config.kratos.public }));
-
-	export async function load({ page }) {
-		const flowID = page.query.get('flow');
-
-		if (!flowID || !isString(flowID)) {
-			return {
-				redirect: `${config.kratos.public}/self-service/recovery/browser`,
-				status: 302
-			};
-		}
-
-		try {
-			const { status, data: flow } = await kratos.getSelfServiceRecoveryFlow(flowID);
-
-			if (status !== 200) {
-				Promise.reject(flow);
-				return {
-					status,
-					error: new Error(`recovery flow error`)
-				};
-			}
-
-			return {
-				props: {
-					ui: flow.ui
-				}
-			};
-		} catch (error) {
-			return redirectOnError(error, '/self-service/recovery/browser');
-		}
-	}
-
+	export const load = createLoad('recovery');
 </script>
 
 <script lang="ts">
@@ -51,7 +17,6 @@
 
 	export let ui: UiContainer;
 	let nodes = getUiNodes(ui.nodes);
-
 </script>
 
 <AuthContainer flowType="recovery" image="https://source.unsplash.com/-84767CQrS8">

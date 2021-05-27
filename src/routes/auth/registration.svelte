@@ -1,38 +1,7 @@
 <script lang="ts" context="module">
-	import { Configuration, PublicApi } from '@ory/kratos-client';
-	import config from '$lib/config';
-	import { isString, redirectOnError } from '$lib/helpers';
+	import { createLoad } from './_load';
 
-	const kratos = new PublicApi(new Configuration({ basePath: config.kratos.public }));
-
-	export async function load({ page }) {
-		const flowID = page.query.get('flow');
-
-		if (!flowID || !isString(flowID)) {
-			return {
-				redirect: `${config.kratos.public}/self-service/registration/browser`,
-				status: 302
-			};
-		}
-
-		try {
-			const { status, data: flow } = await kratos.getSelfServiceRegistrationFlow(flowID);
-
-			if (status !== 200) {
-				return Promise.reject(flow);
-			}
-
-			flow.ui.nodes;
-
-			return {
-				props: {
-					ui: flow.ui
-				}
-			};
-		} catch (error) {
-			return redirectOnError(error, '/self-service/registration/browser');
-		}
-	}
+	export const load = createLoad('registration');
 </script>
 
 <script lang="ts">

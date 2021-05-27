@@ -1,36 +1,7 @@
 <script lang="ts" context="module">
-	import { Configuration, AdminApi } from '@ory/kratos-client';
-	import config from '$lib/config';
-	import { isString, redirectOnError } from '$lib/helpers';
+	import { createLoad } from './auth/_load';
 
-	const kratos = new AdminApi(new Configuration({ basePath: config.kratos.admin }));
-
-	export async function load({ page }) {
-		const flowID = page.query.get('flow');
-
-		if (!flowID || !isString(flowID)) {
-			return {
-				redirect: `${config.kratos.public}/self-service/settings/browser`,
-				status: 302
-			};
-		}
-
-		try {
-			const { status, data: flow } = await kratos.getSelfServiceSettingsFlow(flowID);
-
-			if (status !== 200) {
-				return Promise.reject(flow);
-			}
-
-			return {
-				props: {
-					ui: flow.ui
-				}
-			};
-		} catch (error) {
-			return redirectOnError(error, '/self-service/settings/browser');
-		}
-	}
+	export const load = createLoad('settings');
 </script>
 
 <script lang="ts">
