@@ -19,6 +19,14 @@ export const onlyNodes = (nodes: Array<UiNode>, only?: string) => {
 	return nodes.filter(({ group }) => group === only);
 };
 
+export const getUiNodes = (nodes: UiNode[]) =>
+	nodes.map((node) => {
+		let attributes = node.attributes as UiNodeInputAttributes;
+		const { value, ...rest } = attributes;
+		let value_ = value as string;
+		return { ...node, attributes: { value: value_, ...rest } };
+	});
+
 export const getTitle = (n: UiNode): string => {
 	switch (n.type) {
 		case 'a':
