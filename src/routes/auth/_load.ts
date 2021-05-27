@@ -1,18 +1,21 @@
 import type { Load } from '@sveltejs/kit';
-import { Configuration, PublicApi } from '@ory/kratos-client';
+import { Configuration, PublicApi, AdminApi } from '@ory/kratos-client';
 import config from '$lib/config';
 import { isString, redirectOnError } from '$lib/helpers';
 import type { KratosFlowType } from '$lib/types';
 
-export const createLoad = (flowType: KratosFlowType, path: string) => {
-	const kratos = new PublicApi(new Configuration({ basePath: config.kratos.public }));
+export const createLoad = (flowType: KratosFlowType) => {
+	const kratos =
+		flowType === 'settings'
+			? new AdminApi(new Configuration({ basePath: config.kratos.admin }))
+			: new PublicApi(new Configuration({ basePath: config.kratos.public }));
 
 	const load: Load = async ({ page }) => {
 		const flowID = page.query.get('flow');
 
 		if (!flowID || !isString(flowID)) {
 			return {
-				redirect: `${config.kratos.public}${path}`,
+				redirect: `${config.kratos.public}/self-service/${flowType}/browser`,
 				status: 302
 			};
 		}
@@ -41,7 +44,7 @@ export const createLoad = (flowType: KratosFlowType, path: string) => {
 				}
 			};
 		} catch (error) {
-			return redirectOnError(error, path);
+			return redirectOnError(error, `/self-service/${flowType}/browser`);
 		}
 	};
 
