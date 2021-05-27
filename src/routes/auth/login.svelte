@@ -36,33 +36,49 @@
 <script lang="ts">
 	import type { UiContainer } from '@ory/kratos-client';
 	import AuthForm from '$lib/Kratos/AuthForm.svelte';
-	import Input from '$lib/Kratos/Input.svelte';
 	import Message from '$lib/Kratos/Message.svelte';
-	import Link from '$lib/Link.svelte';
+	import AuthContainer from '$lib/Kratos/AuthContainer.svelte';
+	import { getUiNodes } from '$lib/helpers';
+	import InputHidden from '$lib/Kratos/InputHidden.svelte';
+	import InputDefault from '$lib/Kratos/InputDefault.svelte';
+	import InputPassword from '$lib/Kratos/InputPassword.svelte';
+	import SubmitButton from '$lib/Kratos/SubmitButton.svelte';
 
 	export let ui: UiContainer;
 
-	console.log('node', ui.nodes);
+	let nodes = getUiNodes(ui.nodes);
 </script>
 
-<h1>Login Form flow</h1>
-
-<Message messages={ui.messages} />
-<AuthForm formConfig={ui}>
-	<Input fields={ui.nodes} />
-	<div class="flex mt-6 justify-center text-xs">
-		<Link
-			textColor="text-blue-400"
-			textHover="hover:text-blue-500"
-			rel="prefetch"
-			href="/auth/registration">Register new account</Link
-		>
-		<span class="mx-2 text-gray-300">/</span>
-		<Link
-			textColor="text-blue-400"
-			textHover="hover:text-blue-500"
-			rel="prefetch"
-			href="/auth/recovery">Reset password</Link
-		>
-	</div>
-</AuthForm>
+<AuthContainer flowType="login" image="https://source.unsplash.com/eqQZGX4-X_A">
+	<Message messages={ui.messages} />
+	<AuthForm formConfig={ui}>
+		{#each nodes as { meta: { label }, attributes: { name, type, value, disabled } }}
+			{#if type === 'hidden'}
+				<InputHidden {name} {value} />
+			{/if}
+			{#if type === 'text'}
+				<InputDefault
+					{name}
+					{type}
+					placeholder={label?.text}
+					value={value ? value : ''}
+					{disabled}
+				/>
+			{/if}
+			{#if name === 'password'}
+				<InputPassword
+					{name}
+					{type}
+					placeholder={label?.text}
+					value={value ? value : ''}
+					{disabled}
+				/>
+			{/if}
+			{#if type === 'submit'}
+				<SubmitButton {name} {type} value={value ? value : ''} {disabled}>
+					{label?.text}
+				</SubmitButton>
+			{/if}
+		{/each}
+	</AuthForm>
+</AuthContainer>

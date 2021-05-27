@@ -42,13 +42,17 @@
 	import AuthForm from '$lib/Kratos/AuthForm.svelte';
 	import Input from '$lib/Kratos/Input.svelte';
 	import Message from '$lib/Kratos/Message.svelte';
+	import AuthContainer from '$lib/Kratos/AuthContainer.svelte';
 
 	export let ui: UiContainer;
 </script>
 
-<h4>Verify your email address</h4>
-
-<Message messages={ui.messages} />
-<AuthForm formConfig={ui}>
-	<Input fields={ui.nodes} />
-</AuthForm>
+<AuthContainer flowType="verification">
+	<div class="px-8 mb-4 text-center">
+		<h3 class="pt-4 mb-2 text-2xl">Verify your email address</h3>
+	</div>
+	<Message messages={ui.messages} />
+	<AuthForm formConfig={ui}>
+		<Input fields={ui.nodes} />
+	</AuthForm>
+</AuthContainer>
