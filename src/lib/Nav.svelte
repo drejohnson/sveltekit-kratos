@@ -45,6 +45,17 @@
 				</Link>
 				{#if session.user}
 					<div class="inline-flex items-center ml-5">
+						<svg class="icon icon-user w-4 h-4 mr-2"><use xlink:href="#icon-user" /></svg>
+						<Link
+							styles="font-medium leading-6"
+							rel="prefetch"
+							href="/profile/@{session.user.username}"
+							activeClass={path === 'about' ? 'underline' : ''}
+						>
+							Profile
+						</Link>
+					</div>
+					<div class="inline-flex items-center ml-5">
 						<svg class="icon icon-exit w-4 h-4 mr-2"><use xlink:href="#icon-exit" /></svg>
 						<Link styles="font-medium leading-6 text-red-600" href={logoutUrl}>Log out</Link>
 					</div>
