@@ -8,7 +8,7 @@
 <div
 	class="w-full flex flex-wrap {flowType === 'recovery' || flowType === 'verification'
 		? 'flex-row-reverse'
-		: ''}"
+		: ''} mt-28"
 >
 	<div class="w-full md:w-1/2 flex flex-col">
 		<div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12">
