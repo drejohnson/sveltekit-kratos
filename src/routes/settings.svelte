@@ -7,15 +7,15 @@
 <script lang="ts">
 	import type { UiContainer } from '@ory/kratos-client';
 	import AuthForm from '$lib/Kratos/AuthForm.svelte';
-	import Input from '$lib/Kratos/Input.svelte';
 	import Message from '$lib/Kratos/Message.svelte';
 
 	export let ui: UiContainer;
+	console.log(ui);
 </script>
 
 <h2>Settings</h2>
 
 <Message messages={ui.messages} />
 <AuthForm formConfig={ui}>
-	<Input fields={ui.nodes} />
+	<!-- <Input fields={ui.nodes} /> -->
 </AuthForm>
