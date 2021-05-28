@@ -12,7 +12,15 @@
 
 <div class="field">
 	<label for={name} class="form-label" />
-	<input class="input" {name} {type} {value} {placeholder} {disabled} {...$$restProps} />
+	<input
+		class="input"
+		{name}
+		{type}
+		value={value ? value : ''}
+		{placeholder}
+		{disabled}
+		{...$$restProps}
+	/>
 </div>
 
 <Message {messages} />
