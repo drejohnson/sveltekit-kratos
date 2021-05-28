@@ -1,7 +1,11 @@
 <script lang="ts">
+	import { logoutUrl } from '$lib/helpers';
+	import config from '$lib/config';
+	import type { Session } from './types';
 	import Link from './Link.svelte';
 
 	export let path: string;
+	export let session: Session;
 </script>
 
 <header class="absolute w-full px-8 z-50">
@@ -19,14 +23,18 @@
 			<nav
 				class="navigation flex flex-wrap items-center mb-5 text-base md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200"
 			>
-				<Link href="/auth/login" activeClass={path === 'auth/login' ? 'underline' : ''}>Login</Link>
-				<Link
-					styles="ml-5 font-medium leading-6"
-					href="/auth/registration"
-					activeClass={path === 'auth/registration' ? 'underline' : ''}
-				>
-					Register
-				</Link>
+				{#if !session.user}
+					<Link href="/auth/login" activeClass={path === 'auth/login' ? 'underline' : ''}
+						>Login</Link
+					>
+					<Link
+						styles="ml-5 font-medium leading-6"
+						href="/auth/registration"
+						activeClass={path === 'auth/registration' ? 'underline' : ''}
+					>
+						Register
+					</Link>
+				{/if}
 				<Link
 					styles="ml-5 font-medium leading-6"
 					rel="prefetch"
@@ -35,6 +43,12 @@
 				>
 					About
 				</Link>
+				{#if session.user}
+					<div class="inline-flex items-center ml-5">
+						<svg class="icon icon-exit w-4 h-4 mr-2"><use xlink:href="#icon-exit" /></svg>
+						<Link styles="font-medium leading-6 text-red-600" href={logoutUrl}>Log out</Link>
+					</div>
+				{/if}
 			</nav>
 		</div>
 	</div>
