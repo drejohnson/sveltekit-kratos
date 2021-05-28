@@ -29,6 +29,7 @@ export const getSession: GetSession = (request) => {
 			// only include properties needed client-side —
 			// exclude anything else attached to the user
 			// like access tokens etc
+			username: request.locals.user?.identity?.traits.username,
 			email: request.locals.user?.identity?.traits.email,
 			first_name: request.locals.user?.identity?.traits.name.first,
 			last_name: request.locals.user?.identity?.traits.name.last
