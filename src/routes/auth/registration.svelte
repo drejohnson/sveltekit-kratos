@@ -41,8 +41,8 @@
 	let nodes = getUiNodes(ui.nodes);
 
 	// TODO: Think of a better way to sort input fields
-	const [csrf_token, email, password, firstname, lastname, submit] = nodes;
-	const sortedNodes = [csrf_token, firstname, lastname, email, password, submit];
+	const [csrf_token, email, password, username, firstname, lastname, submit] = nodes;
+	const sortedNodes = [csrf_token, firstname, lastname, username, email, password, submit];
 
 	console.log('ui', ui);
 </script>
@@ -58,7 +58,7 @@
 				<InputDefault
 					{name}
 					{type}
-					placeholder={label?.text}
+					placeholder={name === 'traits.username' ? 'Username' : label?.text}
 					value={value ? value : ''}
 					{messages}
 					{disabled}
