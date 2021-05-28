@@ -30,7 +30,7 @@ export const createLoad = (flowType: KratosFlowType) => {
 					? 'getSelfServiceRecoveryFlow'
 					: flowType === 'verification'
 					? 'getSelfServiceVerificationFlow'
-					: 'getSelfServiceLoginFlow';
+					: 'getSelfServiceSettingsFlow';
 
 			const { status, data: flow } = await kratos[authFlow](flowID);
 
