@@ -23,7 +23,7 @@
 <AuthContainer flowType="login" image="https://source.unsplash.com/eqQZGX4-X_A">
 	<Message messages={ui.messages} />
 	<AuthForm formConfig={ui}>
-		{#each nodes as { meta: { label }, attributes: { name, type, value, disabled } }}
+		{#each nodes as { messages, meta: { label }, attributes: { name, type, value, disabled } }}
 			{#if type === 'hidden'}
 				<InputHidden {name} {value} />
 			{/if}
@@ -34,6 +34,7 @@
 					placeholder={label?.text}
 					value={value ? value : ''}
 					{disabled}
+					{messages}
 				/>
 			{/if}
 			{#if name === 'password'}
@@ -43,6 +44,7 @@
 					placeholder={label?.text}
 					value={value ? value : ''}
 					{disabled}
+					{messages}
 				/>
 			{/if}
 			{#if type === 'submit'}

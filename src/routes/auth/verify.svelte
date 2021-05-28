@@ -25,12 +25,19 @@
 	</div>
 	<Message messages={ui.messages} />
 	<AuthForm formConfig={ui}>
-		{#each nodes as { meta: { label }, attributes: { name, type, value, disabled } }}
+		{#each nodes as { messages, meta: { label }, attributes: { name, type, value, disabled } }}
 			{#if type === 'hidden'}
 				<InputHidden {name} {value} />
 			{/if}
 			{#if type === 'email'}
-				<InputDefault {name} {type} placeholder="E-Mail" value={value ? value : ''} {disabled} />
+				<InputDefault
+					{name}
+					{type}
+					placeholder="E-Mail"
+					value={value ? value : ''}
+					{disabled}
+					{messages}
+				/>
 			{/if}
 			{#if name === 'password'}
 				<InputPassword
@@ -39,6 +46,7 @@
 					placeholder={label?.text}
 					value={value ? value : ''}
 					{disabled}
+					{messages}
 				/>
 			{/if}
 			{#if type === 'submit'}
