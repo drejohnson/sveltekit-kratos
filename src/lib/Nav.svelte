@@ -13,7 +13,7 @@
 				<span
 					class="flex items-center mb-5 font-bold text-xl p-4 bg-black text-white lg:w-auto lg:items-center lg:justify-center md:mb-0"
 				>
-					Logo
+					{config.projectName}
 				</span>
 			</Link>
 			<nav
