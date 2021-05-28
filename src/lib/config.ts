@@ -25,7 +25,7 @@ export default {
 	},
 	baseUrl,
 	jwksUrl: import.meta.env.VITE_JWKS_URL || '/',
-	projectName: import.meta.env.VITE_PROJECT_NAME || 'SecureApp',
+	projectName: import.meta.env.VITE_PROJECT_NAME || 'Sveltekit Kratos',
 
 	securityMode,
 	SECURITY_MODE_JWT,
