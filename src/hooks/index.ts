@@ -33,7 +33,6 @@ export const getSession: GetSession = (request) => {
 			email: request.locals.user?.identity?.traits.email,
 			first_name: request.locals.user?.identity?.traits.name.first,
 			last_name: request.locals.user?.identity?.traits.name.last
-		},
-		traits: request.locals.user?.identity?.traits
+		}
 	};
 };
