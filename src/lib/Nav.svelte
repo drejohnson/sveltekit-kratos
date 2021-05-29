@@ -23,7 +23,7 @@
 			<nav
 				class="navigation flex flex-wrap items-center mb-5 text-base md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200"
 			>
-				{#if !session.user}
+				{#if !session?.user}
 					<Link href="/auth/login" activeClass={path === 'auth/login' ? 'underline' : ''}
 						>Login</Link
 					>
@@ -43,13 +43,13 @@
 				>
 					About
 				</Link>
-				{#if session.user}
+				{#if session?.user}
 					<div class="inline-flex items-center ml-5">
 						<svg class="icon icon-user w-4 h-4 mr-2"><use xlink:href="#icon-user" /></svg>
 						<Link
 							styles="font-medium leading-6"
 							rel="prefetch"
-							href="/profile/@{session.user.username}"
+							href="/profile/@{session?.user.username}"
 							activeClass={path === 'about' ? 'underline' : ''}
 						>
 							Profile
