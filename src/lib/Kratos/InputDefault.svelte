@@ -8,10 +8,17 @@
 	export let placeholder: string;
 	export let disabled: boolean;
 	export let messages: UiText[];
+	export let showLabel = false;
 </script>
 
 <div class="field">
-	<label for={name} class="form-label" />
+	<slot name="label">
+		<label for={name} class="form-label">
+			{#if showLabel}
+				{name === 'traits.username' ? 'Username' : placeholder}
+			{/if}
+		</label>
+	</slot>
 	<input
 		class="input"
 		{name}
