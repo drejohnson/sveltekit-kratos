@@ -13,22 +13,17 @@
 	import InputDefault from '$lib/Kratos/InputDefault.svelte';
 	import InputPassword from '$lib/Kratos/InputPassword.svelte';
 	import SubmitButton from '$lib/Kratos/SubmitButton.svelte';
+	import FormSectionHeader from '$lib/Kratos/FormSectionHeader.svelte';
 
 	export let ui: UiContainer;
 	let nodes = getUiNodes(ui.nodes);
+	const showLabel = true;
 </script>
 
 <div class="w-full md:w-1/2 flex flex-col px-8 md:p-0 mt-28">
 	<Message messages={ui.messages} />
 	<AuthForm formConfig={ui}>
-		<div class="relative mt-6">
-			<div class="absolute inset-0 flex items-center">
-				<div class="w-full border-t border-gray-300" />
-			</div>
-			<div class="relative flex justify-center text-sm leading-5">
-				<span class="px-2 text-gray-500 bg-white"> Update Profile Info </span>
-			</div>
-		</div>
+		<FormSectionHeader text="Update Profile Info" />
 		{#each nodes as { messages, meta: { label }, attributes: { name, type, value, disabled } }}
 			{#if type === 'hidden'}
 				<InputHidden {name} {value} />
@@ -69,14 +64,7 @@
 				</InputDefault>
 			{/if}
 			{#if type === 'password'}
-				<div class="relative mt-6">
-					<div class="absolute inset-0 flex items-center">
-						<div class="w-full border-t border-gray-300" />
-					</div>
-					<div class="relative flex justify-center text-sm leading-5">
-						<span class="px-2 text-gray-500 bg-white"> Update Password </span>
-					</div>
-				</div>
+				<FormSectionHeader text="Update Password" />
 				<InputPassword
 					{name}
 					{type}
