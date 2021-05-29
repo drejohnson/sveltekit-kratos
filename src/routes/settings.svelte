@@ -41,7 +41,14 @@
 					value={value ? value : ''}
 					{disabled}
 					{messages}
-				/>
+					{showLabel}
+				>
+					<label slot="label" for={name} class="form-label_settings">
+						{#if showLabel}
+							{name === 'traits.username' ? 'Username' : label?.text}
+						{/if}
+					</label>
+				</InputDefault>
 			{/if}
 
 			{#if name === 'traits.name.first' || name === 'traits.name.last'}
@@ -52,7 +59,14 @@
 					value={value ? value : ''}
 					{disabled}
 					{messages}
-				/>
+					{showLabel}
+				>
+					<label slot="label" for={name} class="form-label_settings">
+						{#if showLabel}
+							{label?.text}
+						{/if}
+					</label>
+				</InputDefault>
 			{/if}
 			{#if type === 'password'}
 				<div class="relative mt-6">
