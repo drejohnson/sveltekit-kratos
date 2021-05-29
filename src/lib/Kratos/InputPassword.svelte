@@ -11,7 +11,7 @@
 	export let disabled: boolean;
 	export let messages: UiText[];
 
-	let showPassword: boolean;
+	let showPassword = false;
 
 	const togglePassword = () => (showPassword = !showPassword);
 </script>
