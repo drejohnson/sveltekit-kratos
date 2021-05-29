@@ -4,9 +4,10 @@
 
 ## Features
 
-* [x] [SvelteKit](https://kit.svelte.dev)
-* [x] [Kratos](https://ory.sh/kratos)
-* [ ] [Hasura](https://hasura.io/)
+* [x] Svelte via [SvelteKit](https://kit.svelte.dev)
+* [x] Authentication via [Kratos](https://ory.sh/kratos)
+* [x] Styling via [tailwindcss](https://tailwindcss.com)
+* [ ] GraphQL via [Hasura](https://hasura.io/)
 
 ## Quick start
 
@@ -19,7 +20,7 @@ npm run dev
 npm run dev -- --open
 ```
 
-Start Docker instance :
+Start Kratos :
 
 ```bash
 docker compose up --build --force-recreate
@@ -35,5 +36,7 @@ npm run build
 
 ## TODO
 
-* [ ] Fix CORS issue for settings page 
-* [ ] Add Hasura Graphql 
+* [ ] Fix CORS issue for settings page (only works in Firefox)
+* [ ] Fix misc styles issues for different browsers
+* [ ] Fix password toggle in Firefox (works in Chrome and Safari) 
+* [ ] Add GraphQL via Hasura
