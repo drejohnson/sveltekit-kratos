@@ -32,7 +32,7 @@
 
 <Message {messages} />
 
-<style>
+<style lang="postcss">
 	.input {
 		&:valid {
 			color: inherit;
