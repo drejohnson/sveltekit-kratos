@@ -4,21 +4,23 @@ import config from '$lib/config';
 export const handle: Handle = async ({ request, render }) => {
 	const res = await fetch(`${config.kratos.public}/sessions/whoami`, {
 		headers: {
-			Cookie: `${request.headers.cookie}`,
-			credentials: 'include'
+			Authorization: `${request.headers.authorization}`,
+			Cookie: `${request.headers.cookie}`
 		}
 	});
 
 	const session = await res.json();
+
 	if (session !== undefined) request.locals.user = session;
 
 	const response = await render(request);
 
+	if (session.status === 401) return response;
+
 	return {
 		...response,
 		headers: {
-			...response.headers,
-			credentials: 'include'
+			...response.headers
 		}
 	};
 };
