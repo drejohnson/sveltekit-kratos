@@ -38,5 +38,13 @@ npm run build
 
 * [ ] Fix CORS issue for settings page (only works in Firefox)
 * [ ] Fix misc styles issues for different browsers
-* [ ] Fix password toggle in Firefox (works in Chrome and Safari) 
+* [ ] Fix password toggle not working in Firefox (works in Chrome and Safari) 
 * [ ] Add GraphQL via Hasura
+
+## Disclaimer
+
+> I suggest using the Chrome browser to run this example.
+
+> SvelteKit is still in early beta and has various bugs, especially in Firefox
+
+> If you're on Windows and using WSL2 you might face a bug where the dev server constantly refreshes because of a websocket connection error
