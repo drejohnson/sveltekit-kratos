@@ -51,7 +51,7 @@
 					}
 				}
 			},
-			"required": ["email"],
+			"required": ["email", "username"],
 			"additionalProperties": false
 		}
 	}
