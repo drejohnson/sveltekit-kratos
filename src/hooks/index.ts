@@ -1,7 +1,7 @@
 import type { Handle, GetSession } from '@sveltejs/kit';
 import config from '$lib/config';
 
-export const handle: Handle = async ({ request, render }) => {
+export const handle: Handle = async ({ request, resolve }) => {
 	const res = await fetch(`${config.kratos.public}/sessions/whoami`, {
 		headers: {
 			Authorization: `${request.headers.authorization}`,
@@ -13,7 +13,7 @@ export const handle: Handle = async ({ request, render }) => {
 
 	if (session !== undefined) request.locals.user = session;
 
-	const response = await render(request);
+	const response = await resolve(request);
 
 	if (session.status === 401) return response;
 
