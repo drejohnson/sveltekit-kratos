@@ -1,8 +1,9 @@
 <script lang="ts">
 	export let showPassword: boolean;
+
 </script>
 
-<div class="absolute inset-y-0 right-0 flex items-center px-2 z-10 cursor-pointer" on:click>
+<div class="absolute inset-y-0 right-2 flex items-center px-2 z-10 cursor-pointer" on:click>
 	<svg class="w-4 h-4 fill-current">
 		{#if showPassword}
 			<path
