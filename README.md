@@ -1,13 +1,13 @@
 # SvelteKit-Kratos
 
-> Basic SvelteKit example use [Ory Kratos](https://ory.sh/kratos) for authentication.
+> Basic SvelteKit example using [Ory Kratos](https://ory.sh/kratos) for authentication.
 
 ## Features
 
-* [x] Svelte via [SvelteKit](https://kit.svelte.dev)
-* [x] Authentication via [Kratos](https://ory.sh/kratos)
-* [x] Styling via [tailwindcss](https://tailwindcss.com)
-* [ ] GraphQL via [Hasura](https://hasura.io/)
+- [x] Svelte via [SvelteKit](https://kit.svelte.dev)
+- [x] Authentication via [Kratos](https://ory.sh/kratos)
+- [x] Styling via [tailwindcss](https://tailwindcss.com)
+- [ ] GraphQL via [Hasura](https://hasura.io/)
 
 ## Quick start
 
@@ -20,10 +20,16 @@ npm run dev
 npm run dev -- --open
 ```
 
-Start Kratos :
+Start Kratos:
 
 ```bash
 docker compose up --build --force-recreate
+```
+
+Create cryptographic keys for Oathkeeper JWT:
+
+```bash
+docker run oryd/oathkeeper:v0.38.11-beta.1 credentials generate --alg RS256 > ./.oathkeeper/id_token.jwks.json
 ```
 
 Build a production version of your app by running:
@@ -36,10 +42,11 @@ npm run build
 
 ## TODO
 
-* [ ] Fix CORS issue for settings page (only works in Firefox)
-* [ ] Fix misc styles issues for different browsers
-* [ ] Fix password toggle not working in Firefox (works in Chrome and Safari) 
-* [ ] Add GraphQL via Hasura
+- [ ] Add [Oathkeeper](https://ory.sh/oathkeeper)
+- [ ] Fix CORS issue for settings page (only works in Firefox)
+- [ ] Fix misc styles issues for different browsers
+- [ ] Fix password toggle not working in Firefox (works in Chrome and Safari)
+- [ ] Add GraphQL via Hasura
 
 ## Disclaimer
 
