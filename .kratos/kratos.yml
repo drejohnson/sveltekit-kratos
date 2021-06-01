@@ -42,7 +42,7 @@ selfservice:
     #         provider: google
     #         client_id: INSERT GOOGLE ID HERE
     #         client_secret: INSERT GOOGLE SECRET HERE
-    #         mapper_url: file:///etc/config/kratos/oidc.google.jsonnet
+    #         mapper_url: file:///etc/config/kratos/oidc/oidc.google.jsonnet
     #         scope:
     #           - profile
     #           - email
@@ -60,7 +60,7 @@ selfservice:
     #         provider: facebook
     #         client_id: INSERT FACEBOOK ID HERE
     #         client_secret: .INSERT FACEBOOK SECRET HERE
-    #         mapper_url: file:///etc/config/kratos/oidc.facebook.jsonnet
+    #         mapper_url: file:///etc/config/kratos/oidc/oidc.facebook.jsonnet
     #         scope:
     #           - email
 
