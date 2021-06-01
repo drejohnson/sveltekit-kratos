@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 
 services:
   kratos-migrate:
@@ -6,7 +6,7 @@ services:
       - postgresd
     image: oryd/kratos:v0.6.3-alpha.1
     environment:
-      - DSN=postgres://kratos:secret@postgresd:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4
+      - DSN=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgresd:5432/${POSTGRES_DB}?sslmode=disable&max_conns=20&max_idle_conns=4
     volumes:
       - type: bind
         source: ./.kratos
@@ -29,7 +29,7 @@ services:
       - '4433:4433' # public
       - '4434:4434' # admin
     environment:
-      - DSN=postgres://kratos:secret@postgresd:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4
+      - DSN=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgresd:5432/${POSTGRES_DB}?sslmode=disable&max_conns=20&max_idle_conns=4
       - LOG_LEVEL=trace
     volumes:
       - type: bind
@@ -45,9 +45,9 @@ services:
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_USER=kratos
-      - POSTGRES_PASSWORD=secret
-      - POSTGRES_DB=kratos
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
     networks:
       - intranet
 
