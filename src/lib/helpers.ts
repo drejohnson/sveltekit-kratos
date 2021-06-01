@@ -60,7 +60,7 @@ export const redirectOnError = (error: any, path: string) => {
 	) {
 		return {
 			status: 302,
-			redirect: `${config.kratos.public}${path}`
+			redirect: `${config.kratos.public}/${path}`
 		};
 	}
 };
