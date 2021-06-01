@@ -10,6 +10,7 @@
 		}
 		return {};
 	};
+
 </script>
 
 <script lang="ts">
@@ -23,6 +24,7 @@
 	export let session: Session;
 
 	$: path = $page.path.slice(1);
+
 </script>
 
 <TailwindCSS />
