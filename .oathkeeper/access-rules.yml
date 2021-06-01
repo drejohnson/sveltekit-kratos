@@ -1,0 +1,53 @@
+- id: 'ory:kratos:public'
+  upstream:
+    preserve_host: true
+    url: 'http://kratos:4433'
+    strip_path: /.ory/kratos/public
+  match:
+    url: 'https://svltkt.dev/.ory/kratos/public/<**>'
+    methods:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      - PATCH
+  authenticators:
+    - handler: noop
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: noop
+
+- id: 'ory:web:anonymous'
+  upstream:
+    preserve_host: true
+    url: 'http://web:4435'
+  match:
+    url: 'https://svltkt.dev/<{error,recovery,verify,auth/*,**.css,**.js,**.js.map,**.png,**.webp}{/,}>'
+    methods:
+      - GET
+  authenticators:
+    - handler: anonymous
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: noop
+
+- id: 'ory:web:protected'
+  upstream:
+    preserve_host: true
+    url: 'http://web:4435'
+  match:
+    url: 'https://svltkt.dev/<{,debug,profile/*,settings}>'
+    methods:
+      - GET
+  authenticators:
+    - handler: cookie_session
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: id_token
+  errors:
+    - handler: redirect
+      config:
+        to: https://svltkt.dev/auth/login
