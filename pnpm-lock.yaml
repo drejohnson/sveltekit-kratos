@@ -27,8 +27,8 @@ dependencies:
   '@ory/kratos-client': 0.6.3-alpha.1
 
 devDependencies:
-  '@sveltejs/adapter-node': 1.0.0-next.23_@sveltejs+kit@1.0.0-next.110
-  '@sveltejs/kit': 1.0.0-next.110_svelte@3.38.2
+  '@sveltejs/adapter-node': 1.0.0-next.23_@sveltejs+kit@1.0.0-next.111
+  '@sveltejs/kit': 1.0.0-next.111_svelte@3.38.2
   '@typescript-eslint/eslint-plugin': 4.25.0_ec7770e83475322b368bff30b543badb
   '@typescript-eslint/parser': 4.25.0_eslint@7.27.0+typescript@4.3.2
   autoprefixer: 10.2.6_postcss@8.3.0
@@ -136,16 +136,16 @@ packages:
       picomatch: 2.3.0
     dev: true
 
-  /@sveltejs/adapter-node/1.0.0-next.23_@sveltejs+kit@1.0.0-next.110:
+  /@sveltejs/adapter-node/1.0.0-next.23_@sveltejs+kit@1.0.0-next.111:
     resolution: {integrity: sha512-wlbF3dHCDg8S6uGOwRD845kibdLJXDsq6iYB2GZdsjruA1JxXSVjAEc/4iTlCl1BFNoKzlDB/zPQloA941nZzg==}
     peerDependencies:
       '@sveltejs/kit': 1.0.0-next.110
     dependencies:
-      '@sveltejs/kit': 1.0.0-next.110_svelte@3.38.2
+      '@sveltejs/kit': 1.0.0-next.111_svelte@3.38.2
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.110_svelte@3.38.2:
-    resolution: {integrity: sha512-kXuLgu2TOWLC3Y7DYX0poMzxEuFz1Gy1Z/opkkNnajuJCEhvgXa5ujjr1eW6kU5vGU7rpX0tUN5u7BOuPe8s6g==}
+  /@sveltejs/kit/1.0.0-next.111_svelte@3.38.2:
+    resolution: {integrity: sha512-w3irGw6nqK78YBzSi37MvH67EZJxoACUOnihp1nVOGOJjcHSKysjNeF8qB5/jK7It1TJwxYeu+KrK3mBAg7jqQ==}
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
     hasBin: true
     peerDependencies:
@@ -2185,8 +2185,8 @@ packages:
       glob: 7.1.7
     dev: true
 
-  /rollup/2.50.4:
-    resolution: {integrity: sha512-mBQa9O6bdqur7a6R+TXcbdYgfO2arXlDG+rSrWfwAvsiumpJjD4OS23R9QuhItuz8ysWb8mZ91CFFDQUhJY+8Q==}
+  /rollup/2.50.5:
+    resolution: {integrity: sha512-Ztz4NurU2LbS3Jn5rlhnYv35z6pkjBUmYKr94fOBIKINKRO6kug9NTFHArT7jqwMP2kqEZ39jJuEtkk91NBltQ==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
@@ -2547,7 +2547,7 @@ packages:
       esbuild: 0.11.23
       postcss: 8.3.0
       resolve: 1.20.0
-      rollup: 2.50.4
+      rollup: 2.50.5
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
