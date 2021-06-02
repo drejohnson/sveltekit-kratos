@@ -6,7 +6,7 @@ services:
       - postgresd
     image: oryd/kratos:v0.6.3-alpha.1
     environment:
-      - DSN=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgresd:5432/${POSTGRES_DB}?sslmode=disable&max_conns=20&max_idle_conns=4
+      - DSN=${DB_URL}
     volumes:
       - type: bind
         source: ./.kratos
@@ -29,7 +29,7 @@ services:
       - '4433:4433' # public
       - '4434:4434' # admin
     environment:
-      - DSN=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgresd:5432/${POSTGRES_DB}?sslmode=disable&max_conns=20&max_idle_conns=4
+      - DSN=${DB_URL}
       - LOG_LEVEL=trace
     volumes:
       - type: bind
