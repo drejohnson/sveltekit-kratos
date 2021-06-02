@@ -15,11 +15,13 @@
 			redirect: '/auth/login'
 		};
 	};
+
 </script>
 
 <script lang="ts">
 	import type { Session } from '$lib/types';
 	export let session: Session;
+
 </script>
 
 <h2 class="text-3xl py-4">Hello, {session.user.username}</h2>
