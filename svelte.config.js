@@ -17,22 +17,6 @@ const config = {
 		adapter: node(),
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte'
-		// vite: () => ({
-		// 	server: {
-		// 		host: '0.0.0.0',
-		// 		port: 3000,
-		// 		https: {
-		// 			key: readFileSync('./certs/*.svltkt.dev.key'),
-
-		// 			cert: readFileSync('./certs/*.svltkt.dev.crt')
-		// 		},
-		// 		hmr: {
-		// 			host: 'app.svltkt.dev',
-		// 			protocol: 'wss',
-		// 			port: 24678
-		// 		}
-		// 	}
-		// })
 	}
 };
 
