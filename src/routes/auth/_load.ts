@@ -1,16 +1,10 @@
 import type { Load } from '@sveltejs/kit';
-import { Configuration, PublicApi, AdminApi } from '@ory/kratos-client';
 import config from '$lib/config';
 import { isString, redirectOnError } from '$lib/helpers';
 import type { KratosFlowType } from '$lib/types';
 
 export const createLoad = (flowType: KratosFlowType) => {
-	const kratos =
-		flowType === 'settings'
-			? new AdminApi(new Configuration({ basePath: config.kratos.admin }))
-			: new PublicApi(new Configuration({ basePath: config.kratos.public }));
-
-	const load: Load = async ({ page }) => {
+	const load: Load = async ({ page, fetch }) => {
 		const flowID = page.query.get('flow');
 
 		if (!flowID || !isString(flowID)) {
@@ -21,30 +15,26 @@ export const createLoad = (flowType: KratosFlowType) => {
 		}
 
 		try {
-			let authFlow =
-				flowType === 'login'
-					? 'getSelfServiceLoginFlow'
-					: flowType === 'registration'
-					? 'getSelfServiceRegistrationFlow'
-					: flowType === 'recovery'
-					? 'getSelfServiceRecoveryFlow'
-					: flowType === 'verification'
-					? 'getSelfServiceVerificationFlow'
-					: 'getSelfServiceSettingsFlow';
-
-			const { status, data: flow } = await kratos[authFlow](flowID);
-
-			if (status !== 200) {
-				Promise.reject(flow);
-			}
-
-			return {
-				props: {
-					ui: flow.ui
+			const res = await fetch(`/api/auth/${flowType}`, {
+				headers: {
+					flow_id: flowID
 				}
-			};
+			});
+
+			if (res.ok) {
+				const { status, flow } = await res.json();
+
+				if (status !== 200) {
+					Promise.reject(flow);
+				}
+
+				return {
+					props: { ui: flow.ui }
+				};
+			}
+			return redirectOnError(res, `/self-service/${flowType}/browser`);
 		} catch (error) {
-			return redirectOnError(error, `/self-service/${flowType}/browser`);
+			console.log('catch error', error);
 		}
 	};
 
