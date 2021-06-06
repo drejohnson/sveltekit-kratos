@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # misc
 .DS_Store
 *.pem
@@ -30,3 +31,15 @@ yarn-error.log*
 
 # local env files
 .env
+=======
+.DS_Store
+node_modules
+/.svelte-kit
+/package
+/build
+/functions
+/certs
+.env
+jwks.json
+*.jwks.json
+>>>>>>> Initial commit
