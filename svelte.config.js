@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs';
 import preprocess from 'svelte-preprocess';
 import node from '@sveltejs/adapter-node';
 
