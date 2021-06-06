@@ -6,6 +6,7 @@
 
 	export let path: string;
 	export let session: Session;
+
 </script>
 
 <header class="absolute w-full px-8 z-50">
@@ -50,9 +51,20 @@
 							styles="font-medium leading-6"
 							rel="prefetch"
 							href="/profile/@{session?.user.username}"
-							activeClass={path === 'about' ? 'underline' : ''}
+							activeClass={path === 'profile' ? 'underline' : ''}
 						>
 							Profile
+						</Link>
+					</div>
+					<div class="inline-flex items-center ml-5">
+						<svg class="icon icon-cog w-4 h-4 mr-2"><use xlink:href="#icon-cog" /></svg>
+						<Link
+							styles="font-medium leading-6"
+							rel="prefetch"
+							href="/settings"
+							activeClass={path === 'settings' ? 'underline' : ''}
+						>
+							Settings
 						</Link>
 					</div>
 					<div class="inline-flex items-center ml-5">
