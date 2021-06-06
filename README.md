@@ -43,7 +43,6 @@ npm run build
 ## TODO
 
 - [ ] Add [Oathkeeper](https://ory.sh/oathkeeper)
-- [ ] Fix CORS issue for settings page (only works in Firefox)
 - [ ] Fix misc styles issues for different browsers
 - [ ] Fix password toggle not working in Firefox (works in Chrome and Safari)
 - [ ] Add GraphQL via Hasura
