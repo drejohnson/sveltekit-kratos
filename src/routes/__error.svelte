@@ -4,12 +4,15 @@
 			props: { error, status }
 		};
 	}
+
 </script>
 
 <script lang="ts">
 	import { dev } from '$app/env';
-	export let error, status;
+	// export let error
+	export let status;
 	let title = `${status}`;
+
 </script>
 
 {#if status === 404}
@@ -26,7 +29,7 @@
 				<button
 					class="px-2 py-2 w-36 mt-16 font-light transition ease-in duration-200 hover:bg-yellow-400 border-2 text-lg border-gray-700 bg-yellow-300 focus:outline-none"
 				>
-					Go back home
+					<a href="/"> Go back home </a>
 				</button>
 			</div>
 			<div class="block w-full mx-auto md:mt-0 relative max-w-md lg:max-w-2xl">
