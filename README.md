@@ -26,10 +26,22 @@ Start Kratos:
 docker compose up --build --force-recreate
 ```
 
+Create cookie/default secret
+
+```bash
+openssl rand -base64 24
+```
+
 Create cryptographic keys for Oathkeeper JWT:
 
 ```bash
 docker run oryd/oathkeeper:v0.38.11-beta.1 credentials generate --alg RS256 > ./.oathkeeper/id_token.jwks.json
+```
+
+Create SSL certificates for local development
+
+```bash
+mkcert *.myapp.local
 ```
 
 Build a production version of your app by running:
@@ -42,7 +54,7 @@ npm run build
 
 ## TODO
 
-- [ ] Add [Oathkeeper](https://ory.sh/oathkeeper)
+- [ ] Add [Oathkeeper](https://ory.sh/oathkeeper) as a reverse proxy
 - [ ] Fix misc styles issues for different browsers
 - [ ] Fix password toggle not working in Firefox (works in Chrome and Safari)
 - [ ] Add GraphQL via Hasura
@@ -53,4 +65,4 @@ npm run build
 
 > SvelteKit is still in early beta and has various bugs, especially in Firefox
 
-> If you're on Windows and using WSL2 you might face a bug where the dev server constantly refreshes because of a websocket connection error
+> If you're on Windows and using WSL2 you might face a bug where the dev server constantly refreshes because of a websocket connection error when using host 127.0.0.1
