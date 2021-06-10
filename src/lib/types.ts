@@ -1,4 +1,10 @@
-export type KratosFlowType = 'registration' | 'login' | 'settings' | 'verification' | 'recovery';
+export type KratosFlowType =
+	| 'registration'
+	| 'login'
+	| 'settings'
+	| 'verification'
+	| 'recovery'
+	| 'error';
 
 export interface Session {
 	user: {
