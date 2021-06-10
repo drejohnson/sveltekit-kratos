@@ -11,6 +11,7 @@ specifiers:
   eslint: ^7.28.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-svelte3: ^3.2.0
+  jose: ^3.12.3
   postcss: ^8.3.0
   postcss-cli: ^8.3.1
   postcss-load-config: ^3.0.1
@@ -26,6 +27,7 @@ specifiers:
 
 dependencies:
   '@ory/kratos-client': 0.6.3-alpha.1
+  jose: 3.12.3
 
 devDependencies:
   '@sveltejs/adapter-node': 1.0.0-next.24
@@ -121,7 +123,7 @@ packages:
     dev: true
 
   /@ory/kratos-client/0.6.3-alpha.1:
-    resolution: {integrity: sha512-3ckStC6Zc/MQjg8bA113gBJylIzmbtvAmMwXq4348I/3QQNPXPHqzLor92XQ+/Eo7yAe8HMI5pbgLf0gjzXdFg==}
+    resolution: {integrity: sha512-3ckStC6Zc/MQjg8bA113gBJylIzmbtvAmMwXq4348I/3QQNPXPHqzLor92XQ+/Eo7yAe8HMI5pbgLf0gjzXdFg==, tarball: '@ory/kratos-client/-/kratos-client-0.6.3-alpha.1.tgz'}
     dependencies:
       axios: 0.21.1
     transitivePeerDependencies:
@@ -872,8 +874,8 @@ packages:
       is-arrayish: 0.2.1
     dev: true
 
-  /esbuild/0.12.6:
-    resolution: {integrity: sha512-RDvVLvAjsq/kIZJoneMiUOH7EE7t2QaW7T3Q7EdQij14+bZbDq5sndb0tTanmHIFSqZVMBMMyqzVHkS3dJobeA==}
+  /esbuild/0.12.8:
+    resolution: {integrity: sha512-sx/LwlP/SWTGsd9G4RlOPrXnIihAJ2xwBUmzoqe2nWwbXORMQWtAGNJNYLBJJqa3e9PWvVzxdrtyFZJcr7D87g==}
     hasBin: true
     requiresBuild: true
     dev: true
@@ -1377,6 +1379,10 @@ packages:
   /isexe/2.0.0:
     resolution: {integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=}
     dev: true
+
+  /jose/3.12.3:
+    resolution: {integrity: sha512-PtT5I/omolkItXxKu+BhyrBhoYpmJAIPiG+W00BwZ4I3gT9rl8pLnK5cs2ha0LAknMxLVvM3UexcuYwNUkQ7aw==}
+    dev: false
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -2055,6 +2061,15 @@ packages:
       source-map-js: 0.6.2
     dev: true
 
+  /postcss/8.3.1:
+    resolution: {integrity: sha512-9qH0MGjsSm+fjxOi3GnwViL1otfi7qkj+l/WX5gcRGmZNGsIcqc+A5fBkE6PUobEQK4APqYVaES+B3Uti98TCw==}
+    engines: {node: ^10 || ^12 || >=14}
+    dependencies:
+      colorette: 1.2.2
+      nanoid: 3.1.23
+      source-map-js: 0.6.2
+    dev: true
+
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
@@ -2186,8 +2201,8 @@ packages:
       glob: 7.1.7
     dev: true
 
-  /rollup/2.50.6:
-    resolution: {integrity: sha512-6c5CJPLVgo0iNaZWWliNu1Kl43tjP9LZcp6D/tkf2eLH2a9/WeHxg9vfTFl8QV/2SOyaJX37CEm9XuGM0rviUg==}
+  /rollup/2.51.1:
+    resolution: {integrity: sha512-8xfDbAtBleXotb6qKEHWuo/jkn94a9dVqGc7Rwl3sqspCVlnCfbRek7ldhCARSi7h32H0xR4QThm1t9zHN+3uw==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
@@ -2569,10 +2584,10 @@ packages:
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
-      esbuild: 0.12.6
-      postcss: 8.3.0
+      esbuild: 0.12.8
+      postcss: 8.3.1
       resolve: 1.20.0
-      rollup: 2.50.6
+      rollup: 2.51.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true

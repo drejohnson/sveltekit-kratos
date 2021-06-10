@@ -4,12 +4,6 @@ log:
 
 serve:
   proxy:
-    port: 443
-    tls:
-      cert:
-        path: /etc/certs/oathkeeper/*.svltkt.dev.crt
-      key:
-        path: /etc/certs/oathkeeper/*.svltkt.dev.key
     cors:
       enabled: true
       allowed_origins:
@@ -36,7 +30,7 @@ errors:
     redirect:
       enabled: true
       config:
-        to: https://svltkt.dev/auth/login
+        to: http://127.0.0.1:4455/auth/login
         when:
           - error:
               - unauthorized
@@ -93,12 +87,12 @@ mutators:
   id_token:
     enabled: true
     config:
-      issuer_url: https://svltkt.dev/
-      jwks_url: file:///etc/config/oathkeeper/id_token.jwks.json
+      issuer_url: http://127.0.0.1:4455/
+      jwks_url: file:///etc/config/oathkeeper/jwks.json
       claims: |
         {
           "session": {{ .Extra | toJson }}
         },
         {
-          "https://hasura.io/jwt/claims": "{\"x-hasura-allowed-roles\": [\"user\", \"admin\"], \"x-hasura-default-role\": \"user\", \"x-hasura-user-id\":\"{{ print .Extra.userId | toJson }}\"}"
+          "https://hasura.io/jwt/claims": "{\"x-hasura-allowed-roles\": [\"user\", \"admin\"], \"x-hasura-default-role\": \"user\", \"x-hasura-user-id\":\"{{ print .Extra.identity.id | toJson }}\"}"
         }

@@ -3,15 +3,14 @@ version: '3.9'
 services:
   kratos:
     environment:
-      - SERVE_PUBLIC_BASE_URL=https://svltkt.dev/.ory/kratos/public/
+      - SERVE_PUBLIC_BASE_URL=http://127.0.0.1:4455/.ory/kratos/public/
 
   oathkeeper:
     image: oryd/oathkeeper:v0.38.11-beta.1
     depends_on:
       - kratos
     ports:
-      - 80:80
-      - 443:443
+      - 4455:4455
       - 4456:4456
     command: serve proxy -c "/etc/config/oathkeeper/oathkeeper.yml"
     environment:
@@ -22,3 +21,16 @@ services:
     volumes:
       - ./.oathkeeper:/etc/config/oathkeeper
       - ./certs:/etc/certs/oathkeeper
+
+  # api:
+  #   depends_on:
+  #     - oathkeeper
+  #   build:
+  #     context: ./server
+  #     dockerfile: Dockerfile
+  #   command: deno run --allow-net --allow-env server.ts
+  #   volumes:
+  #     - ./server/src:/app
+  #   environment:
+  #     - OATHKEEPER_HOST=http://oathkeeper:4456
+  #     - JWKS_URL=http://oathkeeper:4456/.well-known/jwks.json

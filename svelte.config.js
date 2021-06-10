@@ -15,6 +15,7 @@ const config = {
 	kit: {
 		adapter: node(),
 		// hydrate the <div id="svelte"> element in src/app.html
+		// hostHeader: 'X-Forwarded-Host',
 		target: '#svelte'
 	}
 };

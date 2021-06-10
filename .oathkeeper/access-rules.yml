@@ -1,10 +1,10 @@
-- id: 'ory:kratos:public'
+- id: 'auth'
   upstream:
     preserve_host: true
     url: 'http://kratos:4433'
     strip_path: /.ory/kratos/public
   match:
-    url: 'https://svltkt.dev/.ory/kratos/public/<**>'
+    url: 'http://127.0.0.1:4455/.ory/kratos/public/<**>'
     methods:
       - GET
       - POST
@@ -18,12 +18,12 @@
   mutators:
     - handler: noop
 
-- id: 'ory:web:anonymous'
+- id: 'web:anonymous'
   upstream:
     preserve_host: true
-    url: 'http://web:4435'
+    url: 'http://host.docker.internal:3000'
   match:
-    url: 'https://svltkt.dev/<{error,recovery,verify,auth/*,**.css,**.js,**.js.map,**.png,**.webp}{/,}>'
+    url: 'http://127.0.0.1:4455/<{error,recovery,verify,about,auth/*,**.css,**.js,**.js.map,**.png,**.webp,**.svg}{/,}>'
     methods:
       - GET
   authenticators:
@@ -33,12 +33,12 @@
   mutators:
     - handler: noop
 
-- id: 'ory:web:protected'
+- id: 'web:protected'
   upstream:
     preserve_host: true
-    url: 'http://web:4435'
+    url: 'http://host.docker.internal:3000'
   match:
-    url: 'https://svltkt.dev/<{,debug,profile/*,settings}>'
+    url: 'http://127.0.0.1:4455/<{,debug,profile/*,settings}>'
     methods:
       - GET
   authenticators:
@@ -50,4 +50,4 @@
   errors:
     - handler: redirect
       config:
-        to: https://svltkt.dev/auth/login
+        to: http://127.0.0.1:4455/auth/login
