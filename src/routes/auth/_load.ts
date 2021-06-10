@@ -22,7 +22,7 @@ export const createLoad = (flowType: KratosFlowType) => {
 			});
 
 			if (res.ok) {
-				const { status, flow } = await res.json();
+				const { status, data: flow } = await res.json();
 
 				if (status !== 200) {
 					Promise.reject(flow);
