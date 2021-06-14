@@ -97,8 +97,9 @@ mutators:
       jwks_url: file:///etc/config/oathkeeper/id_token.jwks.json
       claims: |
         {
-          "session": {{ .Extra | toJson }}
-        },
-        {
-          "https://hasura.io/jwt/claims": "{\"x-hasura-allowed-roles\": [\"user\", \"admin\"], \"x-hasura-default-role\": \"user\", \"x-hasura-user-id\":\"{{ print .Extra.userId | toJson }}\"}"
+          "session": {{ .Extra | toJson }},
+          "https://hasura.io/jwt/claims": {
+            "x-hasura-allowed-roles": ["user", "admin"], "x-hasura-default-role": "user", 
+            "x-hasura-user-id": {{ print .Extra.identity.id | toJson }}
+          }
         }
