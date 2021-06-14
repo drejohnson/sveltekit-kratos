@@ -23,6 +23,16 @@ npm run dev -- --open
 npm run dev -- -H
 ```
 
+If running locally on port 80 and getting `listen EACCES: permission denied 0.0.0.0:80` try:
+
+```bash
+sudo apt-get install libcap2-bin
+sudo setcap cap_net_bind_service=+ep `readlink -f \`which node\``
+
+# start sveltekit on port 80 or 443 if using https with -H flag
+npm run dev -- -p 80
+```
+
 Start Kratos:
 
 ```bash
@@ -38,14 +48,14 @@ openssl rand -base64 24
 Create cryptographic keys for Oathkeeper JWT:
 
 ```bash
-docker run oryd/oathkeeper:v0.38.11-beta.1 credentials generate --alg RS512 > ./.oathkeeper/id_token.jwks.json
+docker run oryd/oathkeeper:v0.38.11-beta.1 credentials generate --alg RS512 > ./.oathkeeper/jwks.json
 ```
 
 Create SSL certificates for local development
 
 ```bash
 mkdir certs && cd certs
-mkcert myapp.local "*.myapp.local"
+mkcert myapp.local "*.myapp.local" localhost 127.0.0.1
 ```
 
 Build a production version of your app by running:
