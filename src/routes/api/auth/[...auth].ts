@@ -9,10 +9,7 @@ const configuration = new Configuration({
 export const get = async (req: Request) => {
 	const kratos = new AdminApi(configuration);
 	const flowId = req.headers.flow_id;
-<<<<<<< HEAD
 	const error = req.headers.error;
-=======
->>>>>>> Initial commit
 	const flowType = req.params.auth;
 
 	let authFlow =
@@ -24,7 +21,6 @@ export const get = async (req: Request) => {
 			? 'getSelfServiceVerificationFlow'
 			: flowType == 'settings'
 			? 'getSelfServiceSettingsFlow'
-<<<<<<< HEAD
 			: flowType == 'error'
 			? 'getSelfServiceError'
 			: 'getSelfServiceLoginFlow';
@@ -34,15 +30,6 @@ export const get = async (req: Request) => {
 
 		return {
 			body: { status, data },
-=======
-			: 'getSelfServiceLoginFlow';
-
-	try {
-		const { status, data: flow } = await kratos[authFlow](flowId);
-
-		return {
-			body: { status, flow },
->>>>>>> Initial commit
 			status,
 			headers: {
 				'Content-Type': 'application/json'

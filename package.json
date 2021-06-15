@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
 	"name": "sveltekit-kratos",
-=======
-	"name": "kratos-selfservice-ui-sveltekit",
->>>>>>> Initial commit
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "svelte-kit dev",
@@ -15,12 +11,12 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"dependencies": {
-		"@ory/kratos-client": "^0.6.3-alpha.1"
+		"@ory/kratos-client": "^0.6.3-alpha.1",
+		"node-fetch": "^2.6.1"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-node": "next",
 		"@sveltejs/kit": "next",
-<<<<<<< HEAD
 		"@typescript-eslint/eslint-plugin": "^4.26.1",
 		"@typescript-eslint/parser": "^4.26.1",
 		"autoprefixer": "^10.2.6",
@@ -28,19 +24,9 @@
 		"eslint": "^7.28.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^3.2.0",
-		"postcss": "^8.3.2",
-=======
-		"@typescript-eslint/eslint-plugin": "^4.26.0",
-		"@typescript-eslint/parser": "^4.26.0",
-		"autoprefixer": "^10.2.6",
-		"cssnano": "^5.0.5",
-		"eslint": "^7.28.0",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-svelte3": "^3.2.0",
-		"postcss": "^8.3.0",
->>>>>>> Initial commit
+		"postcss": "^8.3.4",
 		"postcss-cli": "^8.3.1",
-		"postcss-load-config": "^3.0.1",
+		"postcss-load-config": "^3.1.0",
 		"postcss-nested": "^5.0.5",
 		"prettier": "~2.2.1",
 		"prettier-plugin-svelte": "^2.3.0",
@@ -48,7 +34,7 @@
 		"svelte-check": "^2.1.0",
 		"svelte-preprocess": "^4.7.3",
 		"tailwindcss": "^2.1.4",
-		"tslib": "^2.2.0",
+		"tslib": "^2.3.0",
 		"typescript": "^4.3.2"
 	},
 	"type": "module"

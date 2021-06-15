@@ -2,10 +2,7 @@
 	import { createLoad } from './_load';
 
 	export const load = createLoad('login');
-<<<<<<< HEAD
-=======
 
->>>>>>> Initial commit
 </script>
 
 <script lang="ts">
@@ -22,12 +19,7 @@
 	export let ui: UiContainer;
 
 	let nodes = getUiNodes(ui.nodes);
-<<<<<<< HEAD
-=======
 
-	// console.log('ui', ui);
-
->>>>>>> Initial commit
 </script>
 
 <AuthContainer flowType="login" image="https://source.unsplash.com/eqQZGX4-X_A">
