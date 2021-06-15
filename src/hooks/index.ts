@@ -1,37 +1,56 @@
-import type { Handle, GetSession } from '@sveltejs/kit';
+import type { ServerRequest, ServerResponse } from '@sveltejs/kit/types/hooks';
+import type { MaybePromise } from '@sveltejs/kit/types/helper';
+import { Configuration, PublicApi, Session } from '@ory/kratos-client';
 import config from '$lib/config';
 
-export const handle: Handle = async ({ request, resolve }) => {
-	const res = await fetch(`${config.kratos.public}/sessions/whoami`, {
-		headers: {
-			Authorization: `${request.headers.authorization}`,
-			Cookie: `${request.headers.cookie}`
-		}
-	});
+interface Locals {
+	user: Session;
+}
 
-	const session = await res.json();
+const configuration = new Configuration({
+	basePath: config.kratos.public
+});
 
-	if (session !== undefined) request.locals.user = session;
+export const handle = async ({
+	request,
+	resolve
+}: {
+	request: ServerRequest<Locals>;
+	resolve: (request: ServerRequest<Locals>) => MaybePromise<ServerResponse>;
+}) => {
+	const kratos = new PublicApi(configuration);
 
-	const response = await resolve(request);
+	try {
+		const { status, data } = await kratos.toSession(request.headers['X-Session-Token'], {
+			headers: {
+				Authorization: `${request.headers.authorization}`,
+				Cookie: `${request.headers.cookie}`
+			},
+			credentials: 'include'
+		});
 
-	if (session.status === 401) return response;
+		if (status !== 401) request.locals.user = data;
 
-	return {
-		...response,
-		headers: {
-			...response.headers
-		}
-	};
+		const response = await resolve(request);
+
+		return {
+			...response,
+			headers: {
+				...response.headers
+			}
+		};
+	} catch (error) {
+		if (error.response.status === 401) return await resolve(request);
+	}
 };
 
-export const getSession: GetSession = (request) => {
+export const getSession = (request: ServerRequest<Locals>) => {
 	return {
-		user: request.locals.user.identity && {
+		user: request.locals.user && {
 			// only include properties needed client-side —
 			// exclude anything else attached to the user
 			// like access tokens etc
-			username: request.locals.user?.identity?.traits.username,
+			username: request.locals.user.identity.traits.username,
 			email: request.locals.user?.identity?.traits.email,
 			first_name: request.locals.user?.identity?.traits.name.first,
 			last_name: request.locals.user?.identity?.traits.name.last
