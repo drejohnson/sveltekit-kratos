@@ -1,6 +1,7 @@
 import type { Request } from '@sveltejs/kit';
 import { Configuration, AdminApi } from '@ory/kratos-client';
 import config from '$lib/config';
+import type { AuthFlowType } from '$lib/types';
 
 const configuration = new Configuration({
 	basePath: config.kratos.admin
@@ -26,7 +27,9 @@ export const get = async (req: Request) => {
 			: 'getSelfServiceLoginFlow';
 
 	try {
-		const { status, data } = await kratos[authFlow](flowType === 'error' ? error : flowId);
+		const { status, data }: { status: number; data: AuthFlowType | ErrorResponse } = await kratos[
+			authFlow
+		](flowType === 'error' ? error : flowId);
 
 		return {
 			body: { status, data },
