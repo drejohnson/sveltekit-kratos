@@ -1,5 +1,5 @@
 import type { Request } from '@sveltejs/kit';
-import { Configuration, AdminApi } from '@ory/kratos-client';
+import { Configuration, AdminApi, ErrorResponse } from '@ory/kratos-client';
 import config from '$lib/config';
 import type { AuthFlowType } from '$lib/types';
 

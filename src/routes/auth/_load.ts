@@ -1,7 +1,7 @@
 import type { Load } from '@sveltejs/kit';
 import config from '$lib/config';
 import { isString, redirectOnError } from '$lib/helpers';
-import type { KratosFlowType } from '$lib/types';
+import type { AuthFlowType, KratosFlowType } from '$lib/types';
 
 export const createLoad = (flowType: KratosFlowType) => {
 	const load: Load = async ({ page, fetch }) => {
