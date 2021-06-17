@@ -23,6 +23,7 @@ export type AuthFlowType =
 
 export interface Session {
 	user: {
+		id: string;
 		email: string;
 		username: string;
 		first_name: string;
