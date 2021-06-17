@@ -1,6 +1,6 @@
 import type { Load } from '@sveltejs/kit';
 import config from '$lib/config';
-import { isString, redirectOnError } from '$lib/helpers';
+import { isString } from '$lib/helpers';
 import type { AuthFlowType, KratosFlowType } from '$lib/types';
 
 export const createLoad = (flowType: KratosFlowType) => {
@@ -21,20 +21,26 @@ export const createLoad = (flowType: KratosFlowType) => {
 				}
 			});
 
-			if (res.ok) {
-				const { status, data: flow }: { status: number; data: AuthFlowType } = await res.json();
+			if (!res.ok) {
+				return {
+					status: 302,
+					redirect: `${config.kratos.public}/self-service/${flowType}/browser`
+				};
+			}
+
+			const { status, data: flow }: { status: number; data: AuthFlowType } = await res.json();
 
 			if (status !== 200) {
 				throw flow;
 			}
 
-				return {
-					props: { ui: flow.ui }
-				};
-			}
-			return redirectOnError(res, `/self-service/${flowType}/browser`);
+			return {
+				props: {
+					ui: flow.ui
+				}
+			};
 		} catch (error) {
-			console.log('catch error', error);
+			console.log(error);
 		}
 	};
 
