@@ -24,9 +24,9 @@ export const createLoad = (flowType: KratosFlowType) => {
 			if (res.ok) {
 				const { status, data: flow }: { status: number; data: AuthFlowType } = await res.json();
 
-				if (status !== 200) {
-					Promise.reject(flow);
-				}
+			if (status !== 200) {
+				throw flow;
+			}
 
 				return {
 					props: { ui: flow.ui }
