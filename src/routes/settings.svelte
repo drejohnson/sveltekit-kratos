@@ -44,8 +44,9 @@
 </script>
 
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import type { UiContainer } from '@ory/kratos-client';
-	import { getTitle, getUiNodes, onlyNodes } from '$lib/helpers';
+	import { getUiNodes } from '$lib/helpers';
 	import AuthForm from '$lib/Kratos/AuthForm.svelte';
 	import Message from '$lib/Kratos/Message.svelte';
 	import InputHidden from '$lib/Kratos/InputHidden.svelte';
@@ -53,13 +54,32 @@
 	import InputPassword from '$lib/Kratos/InputPassword.svelte';
 	import SubmitButton from '$lib/Kratos/SubmitButton.svelte';
 	import FormSectionHeader from '$lib/Kratos/FormSectionHeader.svelte';
+	import Confirm from '$lib/Confirm.svelte';
+	import type { Session } from '$lib/types';
 
 	export let ui: UiContainer;
+	export let session: Session;
 	let nodes = getUiNodes(ui.nodes);
+	let open = false;
 	const showLabel = true;
+
+	async function deleteUser(id: string) {
+		const res = await fetch('/api/auth/delete', {
+			method: 'DELETE',
+			body: JSON.stringify({ id })
+		});
+
+		const { success } = await res.json();
+
+		if (success) {
+			await goto('/auth/login');
+			open = false;
+		}
+	}
+
 </script>
 
-<div class="w-full md:w-1/2 flex flex-col px-8 md:p-0 mt-28">
+<div class="relative w-full md:w-1/2 flex flex-col px-8 md:p-0 mt-28">
 	<Message messages={ui.messages} />
 	<AuthForm formConfig={ui}>
 		<FormSectionHeader text="Update Profile Info" />
@@ -120,4 +140,22 @@
 			{/if}
 		{/each}
 	</AuthForm>
+	<button
+		on:click|preventDefault={() => (open = true)}
+		class="bg-red-600 text-white font-bold text-lg hover:bg-red-700 w-full p-2 mt-8 transition"
+		>Delete</button
+	>
+	<Confirm
+		danger
+		bind:open
+		modalHeading="Are you sure you want to delete your account?"
+		primaryButtonText="Delete"
+		secondaryButtonText="Cancel"
+		on:click:button--secondary={() => (open = false)}
+		on:open
+		on:close
+		on:submit={() => deleteUser(session.user.id)}
+	>
+		<p class="text-xl">This is a permanent action and cannot be undone.</p>
+	</Confirm>
 </div>
