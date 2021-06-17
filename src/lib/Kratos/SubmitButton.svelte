@@ -1,8 +1,9 @@
 <script lang="ts">
 	export let name: string;
-	export let value: string;
+	export let value: string = '';
 	export let type: string;
-	export let disabled: boolean;
+	export let disabled: boolean = false;
+
 </script>
 
 <button
@@ -11,6 +12,7 @@
 	{type}
 	{value}
 	{disabled}
+	on:click
 >
 	<slot />
 </button>
