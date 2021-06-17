@@ -1,5 +1,6 @@
 <script lang="ts" context="module">
 	import type { Load } from '@sveltejs/kit';
+	import type { Session } from '$lib/types';
 
 	export const load: Load = async ({ session }: { session: Session }) => {
 		if (session.user) {
@@ -19,7 +20,6 @@
 </script>
 
 <script lang="ts">
-	import type { Session } from '$lib/types';
 	export let session: Session;
 
 </script>
