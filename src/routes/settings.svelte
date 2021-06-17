@@ -55,10 +55,10 @@
 	import SubmitButton from '$lib/Kratos/SubmitButton.svelte';
 	import FormSectionHeader from '$lib/Kratos/FormSectionHeader.svelte';
 	import Confirm from '$lib/Confirm.svelte';
-	import type { Session } from '$lib/types';
+	import type { UserSession } from '$lib/types';
 
 	export let ui: UiContainer;
-	export let session: Session;
+	export let session: UserSession;
 	let nodes = getUiNodes(ui.nodes);
 	let open = false;
 	const showLabel = true;

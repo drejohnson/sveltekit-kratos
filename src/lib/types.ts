@@ -21,7 +21,7 @@ export type AuthFlowType =
 	| RecoveryFlow
 	| SettingsFlow;
 
-export interface Session {
+export interface UserSession {
 	user: {
 		id: string;
 		email: string;

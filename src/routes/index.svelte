@@ -1,8 +1,8 @@
 <script lang="ts" context="module">
 	import type { Load } from '@sveltejs/kit';
-	import type { Session } from '$lib/types';
+	import type { UserSession } from '$lib/types';
 
-	export const load: Load = async ({ session }: { session: Session }) => {
+	export const load: Load = async ({ session }: { session: UserSession }) => {
 		if (session.user) {
 			return {
 				props: {
@@ -20,7 +20,7 @@
 </script>
 
 <script lang="ts">
-	export let session: Session;
+	export let session: UserSession;
 
 </script>
 
