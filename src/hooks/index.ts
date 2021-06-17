@@ -4,7 +4,7 @@ import { Configuration, PublicApi, Session } from '@ory/kratos-client';
 import config from '$lib/config';
 
 interface Locals {
-	user: Session;
+	session: Session;
 }
 
 const configuration = new Configuration({
@@ -29,7 +29,7 @@ export const handle = async ({
 			credentials: 'include'
 		});
 
-		if (status !== 401) request.locals.user = data;
+		if (status !== 401) request.locals.session = data;
 
 		const response = await resolve(request);
 
@@ -46,14 +46,15 @@ export const handle = async ({
 
 export const getSession = (request: ServerRequest<Locals>) => {
 	return {
-		user: request.locals.user && {
+		user: request.locals.session && {
 			// only include properties needed client-side —
 			// exclude anything else attached to the user
 			// like access tokens etc
-			username: request.locals.user.identity.traits.username,
-			email: request.locals.user?.identity?.traits.email,
-			first_name: request.locals.user?.identity?.traits.name.first,
-			last_name: request.locals.user?.identity?.traits.name.last
+			id: request.locals.session.identity.id,
+			username: request.locals.session.identity.traits.username,
+			email: request.locals.session?.identity?.traits.email,
+			first_name: request.locals.session?.identity?.traits.name.first,
+			last_name: request.locals.session?.identity?.traits.name.last
 		}
 	};
 };
