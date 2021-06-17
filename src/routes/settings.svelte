@@ -1,7 +1,46 @@
 <script lang="ts" context="module">
-	import { createLoad } from './auth/_load';
+	import type { Load } from '@sveltejs/kit';
+	import config from '$lib/config';
+	import { isString } from '$lib/helpers';
+	import type { AuthFlowType } from '$lib/types';
 
-	export const load = createLoad('settings');
+	export const load: Load = async ({ page, fetch, session }) => {
+		const flowID = page.query.get('flow');
+
+		if (!flowID || !isString(flowID)) {
+			return {
+				status: 302,
+				redirect: `${config.kratos.public}/self-service/settings/browser`
+			};
+		}
+
+		const res = await fetch(`/api/auth/settings`, {
+			headers: {
+				flow_id: flowID
+			}
+		});
+
+		if (!res.ok) {
+			return {
+				status: 302,
+				redirect: `${config.kratos.public}/self-service/settings/browser`
+			};
+		}
+
+		const { status, data: flow }: { status: number; data: AuthFlowType } = await res.json();
+
+		if (status !== 200) {
+			throw flow;
+		}
+
+		return {
+			props: {
+				ui: flow.ui,
+				session: session.user ? session : undefined
+			}
+		};
+	};
+
 </script>
 
 <script lang="ts">
