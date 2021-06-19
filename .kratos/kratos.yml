@@ -1,6 +1,8 @@
 # see full reference in https://www.ory.sh/kratos/docs/reference/configuration/
 version: v0.6.3-alpha.1
 
+dsn: memory
+
 serve:
   public:
     base_url: http://localhost:4433/

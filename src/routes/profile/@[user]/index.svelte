@@ -1,7 +1,8 @@
 <script lang="ts" context="module">
 	import type { Load } from '@sveltejs/kit';
+	import type { UserSession } from '$lib/types';
 
-	export const load: Load = async ({ session }: { session: Session }) => {
+	export const load: Load = async ({ session }: { session: UserSession }) => {
 		if (session.user) {
 			return {
 				props: {
@@ -18,10 +19,9 @@
 </script>
 
 <script lang="ts">
-	import type { Session } from '$lib/types';
 	import { logoutUrl } from '$lib/helpers';
 
-	export let session: Session;
+	export let session: UserSession;
 </script>
 
 <h2 class="text-3xl py-4">Welcom back, {session.user.username}</h2>
