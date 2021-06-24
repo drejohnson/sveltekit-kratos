@@ -4,7 +4,7 @@
     url: 'http://kratos:4433'
     strip_path: /.ory/kratos/public
   match:
-    url: 'https://svltkt.dev/.ory/kratos/public/<**>'
+    url: 'http://localhost:3000/.ory/kratos/public/<**>'
     methods:
       - GET
       - POST
@@ -23,7 +23,7 @@
     preserve_host: true
     url: 'http://web:4435'
   match:
-    url: 'https://svltkt.dev/<{error,recovery,verify,auth/*,**.css,**.js,**.js.map,**.png,**.webp}{/,}>'
+    url: 'http://localhost:3000/<{error,recovery,verify,auth/*,**.css,**.js,**.js.map,**.png,**.webp}{/,}>'
     methods:
       - GET
   authenticators:
@@ -38,7 +38,7 @@
     preserve_host: true
     url: 'http://web:4435'
   match:
-    url: 'https://svltkt.dev/<{,debug,profile/*,settings}>'
+    url: 'http://localhost:3000/<{,debug,profile/*,settings}>'
     methods:
       - GET
   authenticators:
@@ -50,4 +50,4 @@
   errors:
     - handler: redirect
       config:
-        to: https://svltkt.dev/auth/login
+        to: http://localhost:3000/auth/login

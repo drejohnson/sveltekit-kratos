@@ -1,19 +1,16 @@
-log:
-  level: debug
-  format: json
-
 serve:
   proxy:
     port: 443
     tls:
       cert:
-        path: /etc/certs/oathkeeper/*.svltkt.dev.crt
+        path: /etc/certs/oathkeeper/svltkt.local+1.pem
       key:
-        path: /etc/certs/oathkeeper/*.svltkt.dev.key
+        path: /etc/certs/oathkeeper/svltkt.local+1-key.pem
     cors:
       enabled: true
+      allow_credentials: true
       allowed_origins:
-        - '*'
+        - http://localhost:3000
       allowed_methods:
         - POST
         - GET
@@ -22,11 +19,12 @@ serve:
         - DELETE
       allowed_headers:
         - Authorization
-        - Content-Type
+        - Cookie
       exposed_headers:
         - Content-Type
-      allow_credentials: true
-      debug: true
+        - Set-Cookie
+  api:
+    port: 4456
 
 errors:
   fallback:
@@ -36,24 +34,16 @@ errors:
     redirect:
       enabled: true
       config:
-        to: https://svltkt.dev/auth/login
-        when:
-          - error:
-              - unauthorized
-              - forbidden
-            request:
-              header:
-                accept:
-                  - text/html
+        to: http://localhost:3000/auth/login
+
     json:
       enabled: true
       config:
         verbose: true
 
 access_rules:
-  matching_strategy: glob
   repositories:
-    - file:///etc/config/oathkeeper/access-rules.yml
+    - file:///etc/config/oathkeeper/access_rules.yml
 
 authenticators:
   anonymous:
@@ -93,8 +83,8 @@ mutators:
   id_token:
     enabled: true
     config:
-      issuer_url: https://svltkt.dev/
-      jwks_url: file:///etc/config/oathkeeper/id_token.jwks.json
+      issuer_url: http://oathkeeper:4455/
+      jwks_url: file:///etc/config/oathkeeper/jwks.json
       claims: |
         {
           "session": {{ .Extra | toJson }},
