@@ -12,13 +12,6 @@ const ui: { [key: string]: { title: string; position: number } } = {
 
 type Translations = typeof ui;
 
-export const onlyNodes = (nodes: Array<UiNode>, only?: string) => {
-	if (!only) {
-		return nodes;
-	}
-	return nodes.filter(({ group }) => group === only);
-};
-
 export const getUiNodes = (nodes: UiNode[]) =>
 	nodes.map((node) => {
 		let attributes = node.attributes as UiNodeInputAttributes;
@@ -51,14 +44,5 @@ export const getTitle = (n: UiNode): string => {
 export const getAttribute = (node: UiNode) => node.attributes as UiNodeInputAttributes;
 
 export const isString = (x: any): x is string => typeof x === 'string';
-
-export const redirectOnError = (response: any, path: string) => {
-	if (response.status === 404 || response.status === 410 || response.status === 403) {
-		return {
-			status: 302,
-			redirect: `${config.kratos.public}/${path}`
-		};
-	}
-};
 
 export const logoutUrl = `${config.kratos.public}/self-service/browser/flows/logout`;
