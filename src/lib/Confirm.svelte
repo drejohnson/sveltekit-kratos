@@ -48,7 +48,6 @@
 			document.body.classList.add('modal-open');
 		}
 	});
-
 </script>
 
 {#if open}

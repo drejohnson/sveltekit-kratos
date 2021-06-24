@@ -2,7 +2,6 @@
 	import { createLoad } from './_load';
 
 	export const load = createLoad('login');
-
 </script>
 
 <script lang="ts">
@@ -19,7 +18,6 @@
 	export let ui: UiContainer;
 
 	let nodes = getUiNodes(ui.nodes);
-
 </script>
 
 <AuthContainer flowType="login" image="https://source.unsplash.com/eqQZGX4-X_A">

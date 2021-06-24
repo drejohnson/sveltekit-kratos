@@ -2,7 +2,6 @@
 	import { createLoad } from './_load';
 
 	export const load = createLoad('registration');
-
 </script>
 
 <script lang="ts">
@@ -23,12 +22,9 @@
 	let validations = [];
 	let passwordValue: string;
 
-	const superStrongPassword =
-		/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?!.*(.)\1\1)(?=.{16,})/;
-	const strongPassword =
-		/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?!.*(.)\1\1)(?=.{8,})/;
-	const mediumPassword =
-		/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))/;
+	const superStrongPassword = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?!.*(.)\1\1)(?=.{16,})/;
+	const strongPassword = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?!.*(.)\1\1)(?=.{8,})/;
+	const mediumPassword = /((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))/;
 
 	const validatePassword = (e: Event) => {
 		passwordValue = (<HTMLInputElement>e.target).value;
@@ -47,9 +43,6 @@
 	// TODO: Think of a better way to sort input fields
 	const [csrf_token, email, password, username, firstname, lastname, submit] = nodes;
 	const sortedNodes = [csrf_token, firstname, lastname, username, email, password, submit];
-
-	// console.log('ui', ui);
-
 </script>
 
 <AuthContainer flowType="registration" image="https://source.unsplash.com/_kdTyfnUFAc">

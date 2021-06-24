@@ -27,11 +27,7 @@
 			};
 		}
 
-		const { status, data: flow }: { status: number; data: AuthFlowType } = await res.json();
-
-		if (status !== 200) {
-			throw flow;
-		}
+		const { data: flow }: { status: number; data: AuthFlowType } = await res.json();
 
 		return {
 			props: {
@@ -40,7 +36,6 @@
 			}
 		};
 	};
-
 </script>
 
 <script lang="ts">
@@ -76,7 +71,6 @@
 			open = false;
 		}
 	}
-
 </script>
 
 <div class="relative w-full md:w-1/2 flex flex-col px-8 md:p-0 mt-28">
