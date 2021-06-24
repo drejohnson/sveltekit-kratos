@@ -1,3 +1,4 @@
+import { readFileSync } from 'fs';
 import preprocess from 'svelte-preprocess';
 import node from '@sveltejs/adapter-node';
 
@@ -15,7 +16,24 @@ const config = {
 	kit: {
 		adapter: node(),
 		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte'
+		target: '#svelte',
+		hostHeader: 'X-Forwarded-Host',
+		// trailingSlash: 'ignore',
+		vite: () => ({
+			server: {
+				host: '0.0.0.0',
+				port: 3000,
+				https: {
+					key: readFileSync('./certs/local/svltkt.local+1-key.pem'),
+					cert: readFileSync('./certs/local/svltkt.local+1.pem')
+				},
+				hmr: {
+					host: 'localhost',
+					protocol: 'wss',
+					port: 24678
+				}
+			}
+		})
 	}
 };
 
