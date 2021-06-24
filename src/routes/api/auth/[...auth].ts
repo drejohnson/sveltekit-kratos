@@ -30,13 +30,11 @@ export const get = async (req: Request) => {
 		);
 
 		return {
-			body: { status, data },
+			body: { data },
 			status,
 			headers: {
 				'Content-Type': 'application/json'
 			}
 		};
-	} catch (error) {
-		console.log(error.response.data.error);
-	}
+	} catch {}
 };
