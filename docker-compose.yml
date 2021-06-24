@@ -6,7 +6,7 @@ services:
       - postgresd
     image: oryd/kratos:v0.6.3-alpha.1
     env_file:
-      - ./kratos.env
+      - ./.env
     volumes:
       - type: bind
         source: ./.kratos
@@ -29,7 +29,7 @@ services:
       - '4433:4433' # public
       - '4434:4434' # admin
     env_file:
-      - ./kratos.env
+      - ./.env
     volumes:
       - type: bind
         source: ./.kratos
@@ -44,7 +44,7 @@ services:
     ports:
       - '5432:5432'
     env_file:
-      - ./kratos.env
+      - ./.env
     networks:
       - intranet
 
