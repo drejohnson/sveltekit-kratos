@@ -1,5 +1,7 @@
 <script lang="ts">
+	import config from '$lib/config';
 	import type { KratosFlowType } from '$lib/types';
+	import Link from '$lib/Link.svelte';
 
 	export let flowType: KratosFlowType;
 	export let image = 'https://source.unsplash.com/IXUM4cJynP0';
@@ -12,7 +14,13 @@
 >
 	<div class="w-full md:w-1/2 flex flex-col">
 		<div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12">
-			<a href="/" class="bg-black text-white font-bold text-xl p-4" alt="Logo">Logo</a>
+			<Link href="/">
+				<span
+					class="flex items-center mb-5 font-bold text-xl p-4 bg-black text-white lg:w-auto lg:items-center lg:justify-center md:mb-0"
+				>
+					{config.projectName}
+				</span>
+			</Link>
 		</div>
 
 		<div
