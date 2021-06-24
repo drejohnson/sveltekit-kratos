@@ -18,7 +18,7 @@
 	import type { Session } from '$lib/types';
 	import InlineSvg from '$lib/InlineSvg.svelte';
 	import Nav from '$lib/Nav.svelte';
-	import TailwindCSS from '$lib/TailwindCSS.svelte';
+	import '../global.css';
 
 	export let path: string;
 	export let session: Session;
