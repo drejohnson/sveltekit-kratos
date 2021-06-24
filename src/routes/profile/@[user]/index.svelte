@@ -1,25 +1,12 @@
 <script lang="ts" context="module">
-	import type { Load } from '@sveltejs/kit';
-	import type { UserSession } from '$lib/types';
+	import { createLoad } from '../../_load';
 
-	export const load: Load = async ({ session }: { session: UserSession }) => {
-		if (session.user) {
-			return {
-				props: {
-					session
-				}
-			};
-		}
-
-		return {
-			status: 302,
-			redirect: '/auth/login'
-		};
-	};
+	export const load = createLoad();
 </script>
 
 <script lang="ts">
 	import { logoutUrl } from '$lib/helpers';
+	import type { UserSession } from '$lib/types';
 
 	export let session: UserSession;
 </script>
