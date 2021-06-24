@@ -1,15 +1,12 @@
 import type { ServerRequest, ServerResponse } from '@sveltejs/kit/types/hooks';
 import type { MaybePromise } from '@sveltejs/kit/types/helper';
-import { Configuration, PublicApi, Session } from '@ory/kratos-client';
+import type { Session } from '@ory/kratos-client';
+import { kratosPublicApi } from '$lib/services/kratos';
 import config from '$lib/config';
 
 interface Locals {
 	session: Session;
 }
-
-const configuration = new Configuration({
-	basePath: config.kratos.public
-});
 
 export const handle = async ({
 	request,
@@ -18,18 +15,22 @@ export const handle = async ({
 	request: ServerRequest<Locals>;
 	resolve: (request: ServerRequest<Locals>) => MaybePromise<ServerResponse>;
 }) => {
-	const kratos = new PublicApi(configuration);
-
 	try {
-		const { status, data } = await kratos.toSession(request.headers['X-Session-Token'], {
+		const { status, data } = await kratosPublicApi.toSession(undefined, {
 			headers: {
 				Authorization: `${request.headers.authorization}`,
-				Cookie: `${request.headers.cookie}`
+				Cookie: `${request.headers.cookie}`,
+				Origin: config.baseUrl
 			},
 			credentials: 'include'
 		});
 
-		if (status !== 401) request.locals.session = data;
+		if (status === 401) {
+			request.locals.session = undefined;
+			return await resolve(request);
+		}
+
+		request.locals.session = data;
 
 		const response = await resolve(request);
 
@@ -40,7 +41,10 @@ export const handle = async ({
 			}
 		};
 	} catch (error) {
-		if (error.response?.status === 401) return await resolve(request);
+		// console.log('hooks error', error.response.data.error);
+		if (error.response.data.error.code === 401) {
+			return await resolve(request);
+		}
 	}
 };
 
