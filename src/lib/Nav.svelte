@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { logoutUrl } from '$lib/helpers';
 	import config from '$lib/config';
-	import type { Session } from './types';
+	import type { UserSession } from './types';
 	import Link from './Link.svelte';
+	import { kratosPublicApi } from './services/kratos';
 
 	export let path: string;
-	export let session: Session;
-
+	export let session: UserSession;
 </script>
 
 <header class="absolute w-full px-8 z-50">
@@ -24,9 +24,19 @@
 			<nav
 				class="navigation flex flex-wrap items-center mb-5 text-base md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200"
 			>
+				<Link
+					styles="ml-5 font-medium leading-6"
+					rel="prefetch"
+					href="/about"
+					activeClass={path === 'about' ? 'underline' : ''}
+				>
+					About
+				</Link>
 				{#if !session?.user}
-					<Link href="/auth/login" activeClass={path === 'auth/login' ? 'underline' : ''}
-						>Login</Link
+					<Link
+						styles="ml-5 font-medium leading-6"
+						href="/auth/login"
+						activeClass={path === 'auth/login' ? 'underline' : ''}>Login</Link
 					>
 					<Link
 						styles="ml-5 font-medium leading-6"
@@ -36,14 +46,6 @@
 						Register
 					</Link>
 				{/if}
-				<Link
-					styles="ml-5 font-medium leading-6"
-					rel="prefetch"
-					href="/about"
-					activeClass={path === 'about' ? 'underline' : ''}
-				>
-					About
-				</Link>
 				{#if session?.user}
 					<div class="inline-flex items-center ml-5">
 						<svg class="icon icon-user w-4 h-4 mr-2"><use xlink:href="#icon-user" /></svg>
@@ -70,6 +72,11 @@
 					<div class="inline-flex items-center ml-5">
 						<svg class="icon icon-exit w-4 h-4 mr-2"><use xlink:href="#icon-exit" /></svg>
 						<Link styles="font-medium leading-6 text-red-600" href={logoutUrl}>Log out</Link>
+						<!-- <button
+							class="font-medium leading-6 text-red-600"
+							on:click|preventDefault={() =>
+								kratosPublicApi.initializeSelfServiceBrowserLogoutFlow()}>Logout</button
+						> -->
 					</div>
 				{/if}
 			</nav>
