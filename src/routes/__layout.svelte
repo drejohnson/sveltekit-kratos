@@ -31,6 +31,10 @@
 
 <InlineSvg />
 
+<svelte:head>
+	<title>Kratos SvelteKit</title>
+</svelte:head>
+
 <div class="flex flex-col w-full min-h-screen">
 	{#if !$page.path.includes('auth')}
 		<Nav {path} {session} />
